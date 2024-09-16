@@ -1,11 +1,11 @@
 import express from 'express';
 import cors from 'cors';
-import initializeDatabase from './startup/db.js';
 import routes from './startup/routes.js';
+import sequelizeInstance from './startup/db.js';
 
 const app = express();
 
-initializeDatabase();
+sequelizeInstance;
 
 app.use(cors({
     origin: '*'

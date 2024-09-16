@@ -1,40 +1,32 @@
 import { DataTypes, Model } from 'sequelize';
 import sequelizeInstance from '../../startup/db';
 
-class User extends Model {}
+class Department extends Model {}
 
-User.init({
+Department.init({
     id: {
         type: DataTypes.UUID,           // Define o tipo UUID para o ID
         defaultValue: DataTypes.UUIDV4, // Gera um UUID v4 por padrão
         primaryKey: true                // Define como chave primária
     },
-    email: {
-        type: DataTypes.STRING,
+    name: {
+        type: DataTypes.STRING(100),
         allowNull: false
     },
-    password: {
-        type: DataTypes.STRING,
-        allowNull: false
-    },
-    role:{
-        type: DataTypes.ENUM(['ADM', 'MANAGER']),
-        allowNull: false
-    },
-    EmployeeId:{
+    manager:{
         type: DataTypes.UUID,
         allowNull: false,
-        references: {
+        references:{
             model: 'Employee',
             key: 'id'
         }
     }
 }, {
     sequelizeInstance,      // Passa a instância do Sequelize
-    modelName: 'User',      // Nome do modelo
-    tableName: 'tb_user', // Nome da tabela no banco de dados
+    modelName: 'Department',      // Nome do modelo
+    tableName: 'tb_department', // Nome da tabela no banco de dados
     timestamps: true, // Adiciona `createdAt` e `updatedAt`
     paranoid: true // Adiciona `deletedAt` para suporte a soft deletes
 });
 
-export default User;
+export default Department;

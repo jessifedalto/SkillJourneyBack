@@ -2,7 +2,7 @@ import { Sequelize } from 'sequelize';
 import config from 'config';
 
 
-export default function initializeDatabase() {
+function initializeDatabase() {
     const dbConfig = config.get('db');
 
     const sequelize = new Sequelize(dbConfig.database, dbConfig.user, dbConfig.password, {
@@ -17,3 +17,6 @@ export default function initializeDatabase() {
 
     return sequelize;
 }
+
+const sequelizeInstance = initializeDatabase();
+export default sequelizeInstance;
