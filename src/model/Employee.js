@@ -1,5 +1,5 @@
 import { DataTypes, Model } from 'sequelize';
-import sequelizeInstance from '../../startup/db';
+import sequelizeInstance from '../../startup/db.js';
 
 class Employee extends Model {}
 
