@@ -1,36 +1,37 @@
 import { DataTypes, Model } from 'sequelize';
 import sequelizeInstance from '../../startup/db';
 
-class Training extends Model {}
+class DocumentChunck extends Model {}
 
-Training.init({
+DocumentChunck.init({
     id: {
         type: DataTypes.UUID,           // Define o tipo UUID para o ID
         defaultValue: DataTypes.UUIDV4, // Gera um UUID v4 por padrão
         primaryKey: true                // Define como chave primária
     },
-    name: {
-        type: DataTypes.STRING(200),
+    documentId: {
+        type: DataTypes.UUID,
+        allowNull: false,
+        references: {
+            model: 'Document',
+            key: 'id'
+        }
+    },
+    chunck_number: {
+        type: DataTypes.INTEGER,
         allowNull: false
     },
-    description: {
-        type: DataTypes.STRING(1000),
-        allowNull: true
-    },
-    duration:{
-        type: DataTypes.FLOAT,
+    data: {
+        type: DataTypes.LONGBLOB,
         allowNull: false
-    },
-    due_date:{
-        type: DataTypes.DATE,
-        allowNull: true
     }
+    
 }, {
     sequelizeInstance,      // Passa a instância do Sequelize
-    modelName: 'Training',      // Nome do modelo
-    tableName: 'tb_training', // Nome da tabela no banco de dados
+    modelName: 'DocumentChunck',      // Nome do modelo
+    tableName: 'tb_documentchunck', // Nome da tabela no banco de dados
     timestamps: true, // Adiciona `createdAt` e `updatedAt`
     paranoid: true // Adiciona `deletedAt` para suporte a soft deletes
 });
 
-export default Training;
+export default DocumentChunck;

@@ -10,7 +10,7 @@ Skill.init({
         primaryKey: true                // Define como chave primária
     },
     name: {
-        type: DataTypes.STRING(100),
+        type: DataTypes.STRING(200),
         allowNull: false
     },
     description: {
