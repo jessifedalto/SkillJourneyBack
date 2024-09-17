@@ -9,4 +9,11 @@ export default class EmployeeController
     {
         
     }
+
+    static async getById(req, res)
+    {
+
+    }
+
+    
 }

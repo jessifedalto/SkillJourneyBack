@@ -5,7 +5,8 @@ import AuthController from '../controller/AuthController';
 const route = express.Router();
 
 route 
-    .patch('/update', AuthController.verifyJWT, EmployeeController.update)
-    .delete('/delete', AuthController.verifyJWT, EmployeeController.delete)
-
+    .patch('/update/:id', AuthController.verifyJWT, EmployeeController.update)
+    .delete('/delete/:id', AuthController.verifyJWT, EmployeeController.delete)
+    .get('/:id', AuthController.verifyJWT, EmployeeController.getById)
+    
 export default route;

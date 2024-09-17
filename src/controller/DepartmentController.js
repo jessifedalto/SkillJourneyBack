@@ -15,18 +15,8 @@ export default class DepartmentController
 
     }
 
-    static async getById(req, res)
-    {
-
-    }
-
-    static async getByName(req, res)
-    {
-
-    }
-
     static async getAll(req, res)
     {
-        
+
     }
 }
