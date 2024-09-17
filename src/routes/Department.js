@@ -1,6 +1,6 @@
 import express from 'express';
-import DepartmentController from '../controller/DepartmentController';
-import AuthController from '../controller/AuthController';
+import DepartmentController from '../controller/DepartmentController.js';
+import AuthController from '../controller/AuthController.js';
 
 const route = express.Router();
 

@@ -1,6 +1,6 @@
 import express from 'express';
-import EmployeeSkillController from '../controller/EmployeeSkillController';
-import AuthController from '../controller/AuthController';
+import EmployeeSkillController from '../controller/EmployeeSkillController.js';
+import AuthController from '../controller/AuthController.js';
 
 const route = express.Router();
 

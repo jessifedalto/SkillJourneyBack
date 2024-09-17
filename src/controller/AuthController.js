@@ -1,4 +1,4 @@
-export default class AuthController {
+class AuthController {
     static async register(req, res) 
     {
         // criar tanto o usuário quanto o employee aqui JUNTOS
@@ -14,3 +14,4 @@ export default class AuthController {
 
     }
 }
+export default AuthController;

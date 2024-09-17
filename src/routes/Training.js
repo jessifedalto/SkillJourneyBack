@@ -1,6 +1,6 @@
 import express from 'express';
-import TrainingController from '../controller/TrainingController';
-import AuthController from '../controller/AuthController';
+import TrainingController from '../controller/TrainingController.js';
+import AuthController from '../controller/AuthController.js';
 
 const route = express.Router();
 
