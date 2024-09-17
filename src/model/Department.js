@@ -12,14 +12,6 @@ Department.init({
     name: {
         type: DataTypes.STRING(100),
         allowNull: false
-    },
-    manager:{
-        type: DataTypes.UUID,
-        allowNull: false,
-        references:{
-            model: 'Employee',
-            key: 'id'
-        }
     }
 }, {
     sequelizeInstance,      // Passa a instância do Sequelize
