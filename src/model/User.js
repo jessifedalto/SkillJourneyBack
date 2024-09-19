@@ -10,7 +10,6 @@ class User extends Model {
     async verifyPassword(password) {
         return await bcrypt.compare(password, this.password);
     }
-
 }
 
 User.init({

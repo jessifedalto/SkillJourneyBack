@@ -2,22 +2,22 @@ import User from "../model/User.js";
 
 export default class UserService
 {
-    async criarUsuario(userData) {
+    async createUser(userData) {
         userData.password = await User.hashPassword(userData.password);
         
         return await User.create(userData);
     }
 
-    async validarUsuario(userData) {
-        const user = await User.findOne({ where: { email: userData.email, edv: userData.edv } });
+    async validateUser(email, password) {
+        const user = await User.findOne({ where: { email: email } });
 
-        if (user)
-            throw new Error("Email or Edv already exists.")
+        if (!user)
+            throw new Error('Usuário não cadastrado');
 
-        if (!(await user.verifyPassword(userData.password))) {
-            throw new Error("Invalid password!")
+        if (!(await  user.verifyPassword(password))) {
+            throw new Error('Senha inválida');
         }
 
-        return;
+        return user;
     }
 }
