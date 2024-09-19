@@ -13,7 +13,7 @@ Question.init({
         type: DataTypes.UUID,
         allowNull: false,
         references:{
-            model: 'Quiz',
+            model: 'tb_quiz',
             key: 'id'
         }
     },

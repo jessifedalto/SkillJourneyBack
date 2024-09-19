@@ -13,7 +13,7 @@ Document.init({
         type: DataTypes.UUID,
         allowNull: false,
         references:{
-            model: 'TrainingContent',
+            model: 'tb_trainingcontent',
             key: 'id'
         }
     },

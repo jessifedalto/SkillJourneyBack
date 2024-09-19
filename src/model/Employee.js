@@ -29,7 +29,7 @@ Employee.init({
         type: DataTypes.UUID,
         allowNull: false,
         references: {
-            model: 'Department',
+            model: 'tb_department',
             key: 'id'
         }
     },

@@ -2,11 +2,11 @@ import Department from '../model/Department.js'
 
 export default class DepartmentService
 {
-    async createDepartment(departamentData){
+    static async createDepartment(departamentData){
         return await Department.create(departamentData);
     }
 
-    async exists(name){
+    static async exists(name){
         const departament = await Department.findOne({ where: { name: name }});
         
         if(departament) throw Error('Departamento já existe.');

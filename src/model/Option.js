@@ -13,7 +13,7 @@ Option.init({
         type: DataTypes.UUID,
         allowNull: false,
         references:{
-            model: 'Question',
+            model: 'tb_question',
             key: 'id'
         }
     },

@@ -102,20 +102,20 @@ export default class AuthController {
         //     req.employeeId = decoded.employeeId;
         //     req.full_name = decoded.full_name;
 
-        //     try {
-        //         var key = process.env.SECRET;
-        //         var bytes = CryptoJS.AES.decrypt(req.body.jsonCrypt, key);
-        //         const decryptd = bytes.toString(CryptoJS.enc.Utf8);
-        //         const json = JSON.parse(decryptd);
-        //         req.json = json;
-        //         next();
-
-        //     } catch(eror) {
-        //         req.json = req.body;
-        //         next();
-        //     }
-            
         // });
+        
+        try {
+            var key = process.env.SECRET;
+            var bytes = CryptoJS.AES.decrypt(req.body.jsonCrypt, key);
+            const decryptd = bytes.toString(CryptoJS.enc.Utf8);
+            const json = JSON.parse(decryptd);
+            req.json = json;
+            next();
+
+        } catch(eror) {
+            req.json = req.body;
+            next();
+        }
     }
 
 

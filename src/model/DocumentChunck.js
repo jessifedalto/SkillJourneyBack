@@ -13,7 +13,7 @@ DocumentChunck.init({
         type: DataTypes.UUID,
         allowNull: false,
         references: {
-            model: 'Document',
+            model: 'tb_document',
             key: 'id'
         }
     },

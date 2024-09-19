@@ -13,7 +13,7 @@ EmployeeSkill.init({
         type: DataTypes.UUID,
         allowNull: false,
         references: {
-            model: 'Employee',
+            model: 'tb_employee',
             key: 'id'
         }
     },
@@ -21,7 +21,7 @@ EmployeeSkill.init({
         type: DataTypes.UUID,
         allowNull: false,
         references: {
-            model: 'Skill',
+            model: 'tb_skill',
             key: 'id'
         }
     },

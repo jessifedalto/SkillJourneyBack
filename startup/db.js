@@ -15,6 +15,8 @@ function initializeDatabase() {
         .then(() => console.log(`Connected to ${dbConfig.database}`))
         .catch(err => console.error('Unable to connect to the database:', err));
 
+    sequelize.sync();
+    
     return sequelize;
 }
 
