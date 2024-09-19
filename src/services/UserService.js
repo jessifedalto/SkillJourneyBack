@@ -2,13 +2,13 @@ import User from "../model/User.js";
 
 export default class UserService
 {
-    async createUser(userData) {
+    static async createUser(userData) {
         userData.password = await User.hashPassword(userData.password);
-        
+        console.log(userData);
         return await User.create(userData);
     }
 
-    async validateUser(email, password) {
+    static async validateUser(email, password) {
         const user = await User.findOne({ where: { email: email } });
 
         if (!user)

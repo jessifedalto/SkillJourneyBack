@@ -1,13 +1,14 @@
 import { DataTypes, Model } from 'sequelize';
 import sequelizeInstance from '../../startup/db.js';
+import bcrypt from 'bcryptjs/dist/bcrypt.js';
 
 class User extends Model {
-    async hashPassword(password) {
+    static async hashPassword(password) {
         const salt = await bcrypt.genSalt(12);
         return await bcrypt.hash(password, salt);
     }
 
-    async verifyPassword(password) {
+    static async verifyPassword(password) {
         return await bcrypt.compare(password, this.password);
     }
 }
@@ -23,7 +24,7 @@ User.init({
         allowNull: false
     },
     password: {
-        type: DataTypes.STRING(50),
+        type: DataTypes.STRING(255),
         allowNull: false
     },
     role:{
