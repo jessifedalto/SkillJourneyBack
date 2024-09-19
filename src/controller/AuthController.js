@@ -1,11 +1,10 @@
 import Employee from "../model/Employee.js";
 import User from "../model/User.js";
 import EmployeeService from "../services/EmployeeService.js";
+import bcrypt from "bcryptjs/dist/bcrypt.js";
 import UserService from "../services/UserService.js";
 
 export default class AuthController {
-
-    static userService = new UserService();
 
     static async register(req, res) {
 
@@ -20,37 +19,35 @@ export default class AuthController {
         if (!edv) return res.status(400).json({ message: "O login é obrigatório" });
         if (!role) return res.status(400).json({ message: "O login é obrigatório" });
 
-        const employeeService = new EmployeeService();
-
-        const employee = new Employee({
+        const employee = {
             full_name: full_name,
             birth_date: birth_date,
             hire_date: Date.now(),
             position: position,
             departmentId: departmentId,
             edv: edv
-        });
+        };
 
-        const verifyEmployee = await employeeService.validateEmployee(employee);
-
-        if (!verifyEmployee) {
-            throw new Error("Já cadastrado");
-        }
-
-        await employeeService.createEmployee(employee);
-
-        const user = new User({
-            email: email,
-            password: full_name + edv,
-            role: role,
-            employeeId: employee.id
-        });
+        if (edv > 8) 
+            return res.status(400).send({ message: "Edv maior do que o esperado"})
 
         try {
-            await this.userService.createUser(user);
+            await EmployeeService.validateEmployee(employee);
+
+            const createdEmployee = await EmployeeService.createEmployee(employee);
+
+            const user = {
+                email: email,
+                password: edv,
+                role: role,
+                employeeId: createdEmployee.id
+            };
+
+            await UserService.createUser(user);
+            return res.status(201).send({ message: "Funcionário criado com sucesso"})
         } catch (error) {
             console.log(error);
-            return res.status(500).send({ message: "Something failed" })
+            return res.status(500).send({ message: "Something failed", error: error.message })
         }
 
     }
@@ -60,14 +57,14 @@ export default class AuthController {
         var bytes = CryptoJS.AES.decrypt(req.body.jsonCrypt, key);
         const decryptd = bytes.toString(CryptoJS.enc.Utf8);
         const json = JSON.parse(decryptd);
-      
+
         const { email, password } = json;
 
         if (!email) return res.status(400).json({ message: "O e-mail é obrigatório" });
         if (!password) return res.status(400).json({ message: "A senha é obrigatória" });
 
         try {
-            const user = await this.userService.validateUser(email, password)
+            const user = await UserService.validateUser(email, password)
 
             if (!user || !await bcrypt.compare(password, user.password)) {
                 return res.status(400).send({ message: "Invalid Email or password" });
@@ -82,7 +79,7 @@ export default class AuthController {
             return res.status(200).send({ token: tk });
 
 
-        } catch(error) {
+        } catch (error) {
             console.log(error);
             return res.status(500).send({ message: "Error processing request" });
         }
@@ -103,7 +100,7 @@ export default class AuthController {
         //     req.full_name = decoded.full_name;
 
         // });
-        
+
         try {
             var key = process.env.SECRET;
             var bytes = CryptoJS.AES.decrypt(req.body.jsonCrypt, key);
@@ -112,7 +109,7 @@ export default class AuthController {
             req.json = json;
             next();
 
-        } catch(eror) {
+        } catch (eror) {
             req.json = req.body;
             next();
         }
