@@ -2,6 +2,7 @@ import EmployeeService from "../services/EmployeeService.js";
 import bcrypt from "bcryptjs/dist/bcrypt.js";
 import UserService from "../services/UserService.js";
 import jwt from 'jsonwebtoken';
+import CryptoJS from 'crypto-js'
 
 export default class AuthController {
 
@@ -86,19 +87,19 @@ export default class AuthController {
     }
 
     static async verifyJWT(req, res, next) {
-        // const authHeader = req.headers.authorization;
-        // if (!authHeader) return res.status(401).json({ message: 'No token provided.' });
+        const authHeader = req.headers.authorization;
+        if (!authHeader) return res.status(401).json({ message: 'No token provided.' });
 
-        // const [scheme, token] = authHeader.split(' ');
+        const [scheme, token] = authHeader.split(' ');
 
-        // jwt.verify(token, process.env.SECRET, function (err, decoded) {
-        //     if (err) return res.status(401).json({ message: 'Unauthorized' });
+        jwt.verify(token, process.env.SECRET, function (err, decoded) {
+            if (err) return res.status(401).json({ message: 'Não autorizado' });
 
-        //     req.userId = decoded.id;
-        //     req.employeeId = decoded.employeeId;
-        //     req.full_name = decoded.full_name;
+            req.userId = decoded.id;
+            req.employeeId = decoded.employeeId;
+            req.full_name = decoded.full_name;
 
-        // });
+        });
 
         try {
             var key = process.env.SECRET;
