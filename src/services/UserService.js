@@ -1,23 +1,23 @@
-import User from "../model/User";
+import User from "../model/User.js";
 
 export default class UserService
 {
-    async criarUsuario(user) {
+    async criarUsuario(userData) {
+        userData.password = await User.hashPassword(userData.password);
         
-        await User.create(user);
+        return await User.create(userData);
     }
 
-    async validarUsuario(email, edv, password) {
-        const user = await User.findOne({ $or: [{ email: email } , { edv: edv }] });
+    async validarUsuario(userData) {
+        const user = await User.findOne({ where: { email: userData.email, edv: userData.edv } });
 
-        if (!user) {
+        if (user)
             throw new Error("Email or Edv already exists.")
-        }
 
-        if (!user || !(await user.verifyPassword(password))) {
+        if (!(await user.verifyPassword(userData.password))) {
             throw new Error("Invalid password!")
         }
 
-        return user;
+        return;
     }
 }
