@@ -28,6 +28,10 @@ User.init({
             model: 'Employee',
             key: 'id'
         }
+    },
+    isActive:{
+        type: DataTypes.BOOLEAN,
+        allowNull: false
     }
 }, {
     sequelizeInstance,      // Passa a instância do Sequelize
