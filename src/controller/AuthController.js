@@ -1,8 +1,7 @@
-import Employee from "../model/Employee.js";
-import User from "../model/User.js";
 import EmployeeService from "../services/EmployeeService.js";
 import bcrypt from "bcryptjs/dist/bcrypt.js";
 import UserService from "../services/UserService.js";
+import jwt from 'jsonwebtoken';
 
 export default class AuthController {
 
@@ -28,7 +27,7 @@ export default class AuthController {
             edv: edv
         };
 
-        if (edv > 8) 
+        if (edv.lenght > 8) 
             return res.status(400).send({ message: "Edv maior do que o esperado"})
 
         try {
@@ -53,12 +52,12 @@ export default class AuthController {
     }
 
     static async login(req, res) {
-        var key = process.env.SECRET;
-        var bytes = CryptoJS.AES.decrypt(req.body.jsonCrypt, key);
-        const decryptd = bytes.toString(CryptoJS.enc.Utf8);
-        const json = JSON.parse(decryptd);
+        // var key = process.env.SECRET;
+        // var bytes = CryptoJS.AES.decrypt(req.body.jsonCrypt, key);
+        // const decryptd = bytes.toString(CryptoJS.enc.Utf8);
+        // const json = JSON.parse(decryptd);
 
-        const { email, password } = json;
+        const { email, password } = req.body;
 
         if (!email) return res.status(400).json({ message: "O e-mail é obrigatório" });
         if (!password) return res.status(400).json({ message: "A senha é obrigatória" });
@@ -69,7 +68,8 @@ export default class AuthController {
             if (!user || !await bcrypt.compare(password, user.password)) {
                 return res.status(400).send({ message: "Invalid Email or password" });
             }
-
+            console.log(process.env.SECRET);
+            
             const tk = jwt.sign(
                 { id: user.id },
                 process.env.SECRET,
@@ -80,8 +80,7 @@ export default class AuthController {
 
 
         } catch (error) {
-            console.log(error);
-            return res.status(500).send({ message: "Error processing request" });
+            return res.status(500).send({ message: "Error processing request", error: error.message });
         }
 
     }

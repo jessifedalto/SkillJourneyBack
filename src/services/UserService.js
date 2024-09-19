@@ -3,8 +3,13 @@ import User from "../model/User.js";
 export default class UserService
 {
     static async createUser(userData) {
+        const user = await User.findOne({ where: { email: userData.email } });
+
+        if (user)
+            throw new Error('Usuário já cadastrado');
+        
         userData.password = await User.hashPassword(userData.password);
-        console.log(userData);
+
         return await User.create(userData);
     }
 
@@ -14,7 +19,7 @@ export default class UserService
         if (!user)
             throw new Error('Usuário não cadastrado');
 
-        if (!(await  user.verifyPassword(password))) {
+        if (!(await  User.verifyPassword(password, user.password))) {
             throw new Error('Senha inválida');
         }
 

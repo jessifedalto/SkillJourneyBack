@@ -8,8 +8,8 @@ class User extends Model {
         return await bcrypt.hash(password, salt);
     }
 
-    static async verifyPassword(password) {
-        return await bcrypt.compare(password, this.password);
+    static async verifyPassword(password, dataPassword) {
+        return await bcrypt.compare(password, dataPassword);
     }
 }
 
