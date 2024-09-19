@@ -26,7 +26,7 @@ VideoChunck.init({
         allowNull: false
     }
 }, {
-    sequelizeInstance,      // Passa a instância do Sequelize
+    sequelize: sequelizeInstance,      // Passa a instância do Sequelize
     modelName: 'VideoChunck',      // Nome do modelo
     tableName: 'tb_videochunck', // Nome da tabela no banco de dados
     timestamps: true, // Adiciona `createdAt` e `updatedAt`

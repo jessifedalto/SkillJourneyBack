@@ -44,7 +44,7 @@ User.init({
         defaultValue: true
     }
 }, {
-    sequelizeInstance,      // Passa a instância do Sequelize
+    sequelize: sequelizeInstance,      // Passa a instância do Sequelize
     modelName: 'User',      // Nome do modelo
     tableName: 'tb_user', // Nome da tabela no banco de dados
     timestamps: true, // Adiciona `createdAt` e `updatedAt`

@@ -30,7 +30,7 @@ TrainingSkill.init({
         allowNull: true
     }
 }, {
-    sequelizeInstance,      // Passa a instância do Sequelize
+    sequelize: sequelizeInstance,      // Passa a instância do Sequelize
     modelName: 'TrainingSkill',      // Nome do modelo
     tableName: 'tb_trainingskill', // Nome da tabela no banco de dados
     timestamps: true, // Adiciona `createdAt` e `updatedAt`

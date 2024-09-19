@@ -22,7 +22,7 @@ TrainingContent.init({
         allowNull: false
     }
 }, {
-    sequelizeInstance,      // Passa a instância do Sequelize
+    sequelize: sequelizeInstance,      // Passa a instância do Sequelize
     modelName: 'TrainingContent',      // Nome do modelo
     tableName: 'tb_trainingcontent', // Nome da tabela no banco de dados
     timestamps: true, // Adiciona `createdAt` e `updatedAt`

@@ -14,7 +14,7 @@ Tag.init({
         allowNull: false
     }
 }, {
-    sequelizeInstance,      // Passa a instância do Sequelize
+    sequelize: sequelizeInstance,      // Passa a instância do Sequelize
     modelName: 'Tag',      // Nome do modelo
     tableName: 'tb_tag', // Nome da tabela no banco de dados
     timestamps: true, // Adiciona `createdAt` e `updatedAt`
