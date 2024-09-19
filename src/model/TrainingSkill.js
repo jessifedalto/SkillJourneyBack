@@ -13,7 +13,7 @@ TrainingSkill.init({
         type: DataTypes.UUID,
         allowNull: false,
         references:{
-            model: 'Skill',
+            model: 'tb_skill',
             key: 'id'
         }
     },
@@ -21,7 +21,7 @@ TrainingSkill.init({
         type: DataTypes.UUID,
         allowNull: false,
         references:{
-            model: 'Training',
+            model: 'tb_training',
             key: 'id'
         }
     },

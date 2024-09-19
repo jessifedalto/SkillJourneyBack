@@ -13,7 +13,7 @@ TrainingContentTag.init({
         type: DataTypes.UUID,
         allowNull: false,
         references:{
-            model: 'Tag',
+            model: 'tb_tag',
             key: 'id'
         }
     },
@@ -21,7 +21,7 @@ TrainingContentTag.init({
         type: DataTypes.UUID,
         allowNull: false,
         references:{
-            model: 'TrainingContent',
+            model: 'tb_trainingcontent',
             key: 'id'
         }
     }

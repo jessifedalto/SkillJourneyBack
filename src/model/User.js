@@ -34,7 +34,7 @@ User.init({
         type: DataTypes.UUID,
         allowNull: false,
         references: {
-            model: 'Employee',
+            model: 'tb_employee',
             key: 'id'
         }
     },
