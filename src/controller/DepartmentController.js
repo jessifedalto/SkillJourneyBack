@@ -16,7 +16,7 @@ export default class DepartmentController
             name: name
         };
         try {
-            // await DepartmentService.exists(department.name);
+            await DepartmentService.exists(department.name);
             const newDepartament = await DepartmentService.createDepartment(department);
             return res.status(201).send({ id: newDepartament.id,  message: "Departamento criado com sucesso." });
         } catch (error) {
