@@ -26,7 +26,7 @@ Option.init({
         allowNull: false
     }
 }, {
-    sequelizeInstance,      // Passa a instância do Sequelize
+    sequelize: sequelizeInstance,      // Passa a instância do Sequelize
     modelName: 'Option',      // Nome do modelo
     tableName: 'tb_option', // Nome da tabela no banco de dados
     timestamps: true, // Adiciona `createdAt` e `updatedAt`

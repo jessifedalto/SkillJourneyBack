@@ -14,7 +14,7 @@ Department.init({
         allowNull: false
     }
 }, {
-    sequelizeInstance,      // Passa a instância do Sequelize
+    sequelize: sequelizeInstance,      // Passa a instância do Sequelize
     modelName: 'Department',      // Nome do modelo
     tableName: 'tb_department', // Nome da tabela no banco de dados
     timestamps: true, // Adiciona `createdAt` e `updatedAt`

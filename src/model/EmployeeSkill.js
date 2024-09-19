@@ -34,7 +34,7 @@ EmployeeSkill.init({
         allowNull: true
     }
 }, {
-    sequelizeInstance,      // Passa a instância do Sequelize
+    sequelize: sequelizeInstance,      // Passa a instância do Sequelize
     modelName: 'EmployeeSkill',      // Nome do modelo
     tableName: 'tb_employeeskill', // Nome da tabela no banco de dados
     timestamps: true, // Adiciona `createdAt` e `updatedAt`

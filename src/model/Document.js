@@ -27,7 +27,7 @@ Document.init({
     }
     
 }, {
-    sequelizeInstance,      // Passa a instância do Sequelize
+    sequelize: sequelizeInstance,      // Passa a instância do Sequelize
     modelName: 'Document',      // Nome do modelo
     tableName: 'tb_document', // Nome da tabela no banco de dados
     timestamps: true, // Adiciona `createdAt` e `updatedAt`
