@@ -1,7 +1,9 @@
-class AuthController {
+export default class AuthController {
     static async register(req, res) 
     {
-        // criar tanto o usuário quanto o employee aqui JUNTOS
+        var key = process.env.SECRET;
+
+        
     }
 
     static async login(req, res)
@@ -14,4 +16,3 @@ class AuthController {
 
     }
 }
-export default AuthController;
