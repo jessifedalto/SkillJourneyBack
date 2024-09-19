@@ -1,7 +1,17 @@
 import { DataTypes, Model } from 'sequelize';
 import sequelizeInstance from '../../startup/db.js';
 
-class User extends Model {}
+class User extends Model {
+    async hashPassword(password) {
+        const salt = await bcrypt.genSalt(12);
+        return await bcrypt.hash(password, salt);
+    }
+
+    async verifyPassword(password) {
+        return await bcrypt.compare(password, this.password);
+    }
+
+}
 
 User.init({
     id: {
@@ -21,7 +31,7 @@ User.init({
         type: DataTypes.ENUM(['ADM', 'MANAGER', 'EMPLOYEE']),
         allowNull: false
     },
-    EmployeeId:{
+    employeeId:{
         type: DataTypes.UUID,
         allowNull: false,
         references: {
@@ -31,7 +41,8 @@ User.init({
     },
     isActive:{
         type: DataTypes.BOOLEAN,
-        allowNull: false
+        allowNull: false,
+        defaultValue: true
     }
 }, {
     sequelizeInstance,      // Passa a instância do Sequelize
