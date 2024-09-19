@@ -13,7 +13,7 @@ VideoChunck.init({
         type: DataTypes.UUID,
         allowNull: false,
         references: {
-            model: 'Video',
+            model: 'tb_video',
             key: 'id'
         }
     },
