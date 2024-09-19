@@ -14,7 +14,7 @@ export default class DepartmentService
         return departament;
     }
 
-    async deleteDepartament( id ){
+    static async deleteDepartament( id ){
         const departament = await Department.findOne({ where: { id: id }});
 
         if (!departament) throw Error('Departamento não existe.');
@@ -22,7 +22,7 @@ export default class DepartmentService
         return await departament.destroy();
     }
 
-    async updateDepartament( id, departamentData ){
+    static async updateDepartament( id, departamentData ){
         const departament = await  Department.update( departamentData,
             { where: { id: id }}
         );
@@ -32,7 +32,7 @@ export default class DepartmentService
         return Department.findByPk(id);
     }
 
-    async getAllDepartament(){
+    static async getAllDepartament(){
         const departament = await Department.findAll();
 
         if (!departament) throw Error('Nenhum departamento foi registrado.');
