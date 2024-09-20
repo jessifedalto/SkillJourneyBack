@@ -25,7 +25,7 @@ EmployeeSkill.init({
             key: 'id'
         }
     },
-    profeciency_level:{
+    proficiency_level:{
         type: DataTypes.INTEGER,
         allowNull: false
     },
