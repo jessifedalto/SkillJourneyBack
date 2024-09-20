@@ -34,4 +34,12 @@ export default class EmployeeSkillService
 
         return skillsEmployee;
     }
+
+    static async deleteEmployeeSkill(id){
+        const skillsEmployee = await EmployeeSkill.findOne({where: {employeeId: id}});
+
+        if (!skillsEmployee) throw Error('Employee Skill não existe.');
+
+        return await skillsEmployee.destroy();
+    }
 }

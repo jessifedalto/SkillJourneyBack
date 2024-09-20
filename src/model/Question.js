@@ -1,5 +1,6 @@
 import { DataTypes, Model } from 'sequelize';
 import sequelizeInstance from '../../startup/db.js';
+import Quiz from './Quiz.js'
 
 class Question extends Model {}
 
@@ -32,5 +33,11 @@ Question.init({
     timestamps: true, // Adiciona `createdAt` e `updatedAt`
     paranoid: true // Adiciona `deletedAt` para suporte a soft deletes
 });
+
+Question.belongsTo(Quiz, {
+    foreignKey: 'quizId',
+    onDelete: 'CASCADE'
+});
+
 
 export default Question;

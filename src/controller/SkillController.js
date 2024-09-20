@@ -81,6 +81,8 @@ export default class SkillController
             await SkillService.deleteSkill(id);
             return res.status(200).send({ message: "Skill deletado com sucesso." });
         } catch (error) {
+            if (error.name === 'SequelizeForeignKeyConstraintError')
+                return res.status(400).json({ message: 'Não é possível excluir esta skill pois ela está sendo utilizada.' });
             return res.status(500).send({ error: "Erro ao deletar skill.", message: error.message });
         }
     }

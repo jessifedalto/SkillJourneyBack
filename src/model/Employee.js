@@ -1,5 +1,6 @@
 import { DataTypes, Model } from 'sequelize';
 import sequelizeInstance from '../../startup/db.js';
+import Department from './Department.js'
 
 class Employee extends Model {}
 
@@ -43,6 +44,12 @@ Employee.init({
     tableName: 'tb_employee', // Nome da tabela no banco de dados
     timestamps: true, // Adiciona `createdAt` e `updatedAt`
     paranoid: true // Adiciona `deletedAt` para suporte a soft deletes
+});
+
+
+Employee.belongsTo(Department, {
+    foreignKey: 'departmentId',
+    onDelete: 'SET NULL' // Quando um departamento é excluído, setamos departmentId como NULL
 });
 
 export default Employee;

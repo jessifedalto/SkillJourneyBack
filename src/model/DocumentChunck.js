@@ -1,5 +1,6 @@
 import { DataTypes, Model } from 'sequelize';
 import sequelizeInstance from '../../startup/db.js';
+import Document from './Document.js'
 
 class DocumentChunck extends Model {}
 
@@ -33,5 +34,11 @@ DocumentChunck.init({
     timestamps: true, // Adiciona `createdAt` e `updatedAt`
     paranoid: true // Adiciona `deletedAt` para suporte a soft deletes
 });
+
+DocumentChunck.belongsTo(Document, {
+    foreignKey: 'documentId',
+    onDelete: 'CASCADE'
+});
+
 
 export default DocumentChunck;

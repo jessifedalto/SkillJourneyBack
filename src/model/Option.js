@@ -1,5 +1,6 @@
 import { DataTypes, Model } from 'sequelize';
 import sequelizeInstance from '../../startup/db.js';
+import Question from './Question.js';
 
 class Option extends Model {}
 
@@ -31,6 +32,11 @@ Option.init({
     tableName: 'tb_option', // Nome da tabela no banco de dados
     timestamps: true, // Adiciona `createdAt` e `updatedAt`
     paranoid: true // Adiciona `deletedAt` para suporte a soft deletes
+});
+
+Option.belongsTo(Question, {
+    foreignKey: 'questionId',
+    onDelete: 'CASCADE'
 });
 
 export default Option;

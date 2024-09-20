@@ -51,6 +51,20 @@ export default class EmployeeSkillController {
 
     }
 
+    static async delete(req, res)
+    {
+        const { id } = req.params;
+
+        if (!id) return res.status(400).send({ message: "O id do employee é obrigatório." });
+
+        try {
+            await EmployeeSkillService.deleteEmployeeSkill(id);
+            return res.status(200).send({ message: "Employee Skill deletada com sucesso." });
+        } catch (error) {
+            return res.status(500).send({ error: "Erro ao deletar Employee Skill.", message: error.message });
+        }
+    }
+
     static async getByEmployee(req, res) {
         const { id } = req.params;
 

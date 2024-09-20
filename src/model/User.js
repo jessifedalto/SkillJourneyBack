@@ -1,6 +1,7 @@
 import { DataTypes, Model } from 'sequelize';
 import sequelizeInstance from '../../startup/db.js';
 import bcrypt from 'bcryptjs/dist/bcrypt.js';
+import Employee from './Employee.js'
 
 class User extends Model {
     static async hashPassword(password) {
@@ -38,11 +39,6 @@ User.init({
             model: 'tb_employee',
             key: 'id'
         }
-    },
-    isActive:{
-        type: DataTypes.BOOLEAN,
-        allowNull: false,
-        defaultValue: true
     }
 }, {
     sequelize: sequelizeInstance,      // Passa a instância do Sequelize
@@ -50,6 +46,12 @@ User.init({
     tableName: 'tb_user', // Nome da tabela no banco de dados
     timestamps: true, // Adiciona `createdAt` e `updatedAt`
     paranoid: true // Adiciona `deletedAt` para suporte a soft deletes
+});
+
+
+User.belongsTo(Employee, {
+    foreignKey: 'employeeId',
+    onDelete: 'CASCADE'
 });
 
 export default User;

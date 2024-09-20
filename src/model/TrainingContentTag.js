@@ -1,5 +1,6 @@
 import { DataTypes, Model } from 'sequelize';
 import sequelizeInstance from '../../startup/db.js';
+import TrainingContent from './TrainingContent.js';
 
 class TrainingContentTag extends Model {}
 
@@ -31,6 +32,11 @@ TrainingContentTag.init({
     tableName: 'tb_trainingcontenttag', // Nome da tabela no banco de dados
     timestamps: true, // Adiciona `createdAt` e `updatedAt`
     paranoid: true // Adiciona `deletedAt` para suporte a soft deletes
+});
+
+TrainingContentTag.belongsTo(TrainingContent, {
+    foreignKey: 'trainingContentId',
+    onDelete: 'CASCADE'
 });
 
 export default TrainingContentTag;

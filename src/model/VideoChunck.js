@@ -1,5 +1,6 @@
 import { DataTypes, Model } from 'sequelize';
 import sequelizeInstance from '../../startup/db.js';
+import Video from './Video.js'
 
 class VideoChunck extends Model {}
 
@@ -31,6 +32,11 @@ VideoChunck.init({
     tableName: 'tb_videochunck', // Nome da tabela no banco de dados
     timestamps: true, // Adiciona `createdAt` e `updatedAt`
     paranoid: true // Adiciona `deletedAt` para suporte a soft deletes
+});
+
+VideoChunck.belongsTo(Video, {
+    foreignKey: 'videoId',
+    onDelete: 'CASCADE'
 });
 
 export default VideoChunck;

@@ -1,5 +1,6 @@
 import { DataTypes, Model } from 'sequelize';
 import sequelizeInstance from '../../startup/db.js';
+import Training from './Training.js';
 
 class EmployeeTraining extends Model {}
 
@@ -39,6 +40,11 @@ EmployeeTraining.init({
     tableName: 'tb_employeetraining', // Nome da tabela no banco de dados
     timestamps: true, // Adiciona `createdAt` e `updatedAt`
     paranoid: true // Adiciona `deletedAt` para suporte a soft deletes
+});
+
+EmployeeTraining.belongsTo(Training, {
+    foreignKey: 'trainingId',
+    onDelete: 'RESTRICT'
 });
 
 export default EmployeeTraining;
