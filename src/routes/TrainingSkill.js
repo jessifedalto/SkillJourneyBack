@@ -8,6 +8,6 @@ route
     .delete('/delete/:id', TrainingSkillController.delete)
     .get('/training/:id', TrainingSkillController.getByTraining)
     .get('/skill/:id', TrainingSkillController.getBySkill)
-    .post('/create', TrainingSkillController.create)
+    .post('/create/:skillId/:trainingId', TrainingSkillController.create)
     
 export default route;
