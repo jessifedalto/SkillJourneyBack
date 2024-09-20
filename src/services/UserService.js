@@ -3,11 +3,6 @@ import User from "../model/User.js";
 export default class UserService
 {
     static async createUser(userData) {
-        const user = await User.findOne({ where: { email: userData.email } });
-
-        if (user)
-            throw new Error('Usuário já cadastrado');
-        
         userData.password = await User.hashPassword(userData.password);
 
         return await User.create(userData);
@@ -24,5 +19,11 @@ export default class UserService
         }
 
         return user;
+    }
+
+    static async validateEmailUser(email) {
+        const user = await User.findOne({ where: { email: email } });
+
+        if (user) throw new Error('Usuário já cadastrado');
     }
 }

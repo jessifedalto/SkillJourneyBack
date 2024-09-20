@@ -4,11 +4,6 @@ export default class UserController
     {
 
     }   
-    
-    static async delete(req, res)
-    {
-
-    }
 
     static async getById(req, res)
     {

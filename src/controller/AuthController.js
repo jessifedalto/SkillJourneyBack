@@ -2,6 +2,7 @@ import EmployeeService from "../services/EmployeeService.js";
 import bcrypt from "bcryptjs/dist/bcrypt.js";
 import UserService from "../services/UserService.js";
 import jwt from 'jsonwebtoken';
+import User from "../model/User.js";
 
 export default class AuthController {
 
@@ -32,6 +33,7 @@ export default class AuthController {
 
         try {
             await EmployeeService.validateEmployee(employee);
+            await UserService.validateEmailUser(email);
 
             const createdEmployee = await EmployeeService.createEmployee(employee);
 
