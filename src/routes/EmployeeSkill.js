@@ -9,6 +9,6 @@ route
     .delete('/delete/:id', AuthController.verifyJWT, EmployeeSkillController.delete)
     .get('/employee/:id', AuthController.verifyJWT, EmployeeSkillController.getByEmployee)
     .get('/skill/:id', AuthController.verifyJWT, EmployeeSkillController.getBySkill)
-    .post('/create', AuthController.verifyJWT, EmployeeSkillController.create)
+    .post('/create/:employeeId/:skillId', AuthController.verifyJWT, EmployeeSkillController.create)
     
 export default route;
