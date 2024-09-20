@@ -51,4 +51,7 @@ export default class SkillService
         return await Skill.findAll({ where: { type: type }});
     }
 
+    static async getSkillByName(query){
+        return await Skill.findAll({ where: { name: {  [Op.like]: `%${query}%` } } });
+    }
 }

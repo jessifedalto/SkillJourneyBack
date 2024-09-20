@@ -10,5 +10,7 @@ route
     .get('/', SkillController.getAll)
     .get('/type/:type', SkillController.getByType)
     .post('/create', SkillController.create)
+    .get('/search/:name', SkillController.getByName)
+
 
 export default route;

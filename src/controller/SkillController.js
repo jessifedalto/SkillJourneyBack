@@ -102,4 +102,18 @@ export default class SkillController
             return res.status(500).send({ error: `Erro ao encontrar ${formatted_type} skill.`, message: error.message });
         }
     }
+
+    static async getByName(req, res) {
+        const { name } = req.params;
+
+        if (!name) return res.status(400).send({message: 'O nome da skill é obrigatório.'});
+
+        try {
+            const skills = await SkillService.getSkillByName(name);
+            return res.status(200).send({ data: skills, message: "Skills encontrados com sucesso." });
+        } catch (error) {
+            return res.status(500).send({ error: "Erro ao buscar skills.", message: error.message });
+        }
+
+    }
 }

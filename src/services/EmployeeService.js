@@ -47,4 +47,8 @@ export default class EmployeeService {
     static async getByDepartment(id) {
         return await Employee.findAll({where: { departmentId : id}});
     }
+
+    static async getEmployeeByName(query){
+        return await Employee.findAll({ where: { full_name: {  [Op.like]: `%${query}%` } } });
+    }
 }

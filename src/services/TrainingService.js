@@ -1,54 +1,54 @@
-import Skill from '../model/Skill.js'
+import Training from '../model/Training.js'
 
-export default class SkillService
+export default class TrainingService
 {
-    // static async createSkill(skill_data){
-    //     return await Skill.create(skill_data);
-    // }
+    static async createTraining(training_data){
+        return await Training.create(training_data);
+    }
 
-    // static async exists(name){
-    //     const skill = await Skill.findOne({ where: { name: name }});
+    static async exists(name){
+        const training = await Training.findOne({ where: { name: name }});
         
-    //     if(skill) throw Error('Skill já existe.');
+        if(training) throw Error('Treinamento já existe.');
 
-    //     return skill;
-    // }
+        return training;
+    }
 
-    // static async deleteSkill( id ){
-    //     const skill = await Skill.findByPk(id);
+    static async deleteTraining( id ){
+        const training = await Training.findByPk(id);
 
-    //     if (!skill) throw Error('Skill não existe.');
+        if (!training) throw Error('Treinamento não existe.');
 
-    //     return await skill.destroy();
-    // }
+        return await training.destroy();
+    }
 
-    // static async updateSkill( id, skill_data ){
-    //     const skill = await Skill.update( 
-    //         skill_data,
-    //         { where: { id: id }}
-    //     );
+    static async updateTraining( id, training_data ){
+        const training = await Training.update( 
+            training_data,
+            { where: { id: id }}
+        );
 
-    //     if (!skill) throw Error('Skill não existe.');
+        if (!training) throw Error('Treinamento não existe.');
 
-    //     if (skill == 0) throw Error('Nenhuma skill atualizada.');
+        if (training == 0) throw Error('Nenhum treinamento atualizado.');
 
-    //     return await Skill.findByPk(id);
-    // }
+        return await training.findByPk(id);
+    }
 
-    // static async getAllSkills(){
-    //     return await Skill.findAll();
-    // }
+    static async getAllTraining(){
+        return await Training.findAll();
+    }
 
-    // static async getSkillById(id){
-    //     const skill = await Skill.findByPk(id);
+    static async getTrainingById(id){
+        const training = await Training.findByPk(id);
 
-    //     if (!skill) throw Error('Nenhuma skill foi encontra.');
+        if (!training) throw Error('Nenhum trinamento foi encontro.');
 
-    //     return skill;
-    // }
+        return training;
+    }
 
-    // static async getSkillByType(type){
-    //     return await Skill.findAll({ where: { type: type }});
-    // }
+    static async getTrainingByName(query){
+        return await Training.findAll({ where: { name: {  [Op.like]: `%${query}%` } } });
+    }
 
 }

@@ -1,5 +1,9 @@
 export default class TrainingController
 {
+
+    // -------------- TESTAR OS getByName DA SKILL E DO EMPLOYEE --------------
+    // Falta colocar nas routs
+
     static async create(req, res)
     {
 
@@ -17,6 +21,11 @@ export default class TrainingController
     }
 
     static async getById(req, res)
+    {
+        
+    }
+
+    static async getByName(req, res)
     {
         
     }

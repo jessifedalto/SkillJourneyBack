@@ -71,6 +71,19 @@ export default class EmployeeController {
         } catch (error) {
             return res.status(500).send({ error: "Erro ao buscar employees do departamento.", message: error.message });
         }
+    }
+
+    static async getByName(req, res) {
+        const { name } = req.params;
+
+        if (!name) return res.status(400).send({message: 'O nome do employees é obrigatório'});
+
+        try {
+            const employees = await EmployeeService.getEmployeeByName(name);
+            return res.status(200).send({ data: employees, message: "Employees encontrados com sucesso." });
+        } catch (error) {
+            return res.status(500).send({ error: "Erro ao buscar employees.", message: error.message });
+        }
 
     }
 }

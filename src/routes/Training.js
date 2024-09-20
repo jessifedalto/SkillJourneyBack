@@ -8,5 +8,7 @@ route
     .delete('/delete/:id', TrainingController.delete)
     .get('/:id', TrainingController.getById)
     .post('/create', TrainingController.create)
+    .get('/search/:name', TrainingController.getByName)
+
     
 export default route;

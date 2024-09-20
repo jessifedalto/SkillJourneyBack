@@ -9,5 +9,6 @@ route
     .get('/:id', EmployeeController.getById)
     .get('/', EmployeeController.getAll)
     .get('/department/:id', EmployeeController.getByDepartment)
+    .get('/search/:name', EmployeeController.getByName)
     
 export default route;
