@@ -34,6 +34,8 @@ export default class EmployeeSkillController {
 
         if (!id) return res.status(400).send({ message: 'O id é obrigatório' })
 
+        if (!proficiencyLevel && !assessmentDate && !developmentPlan) return res.status(400).send({ message: 'Algum parametro deve ser alterado' })
+
         const employeeSkill = {
             proficiency_level: proficiencyLevel,
             assessment_date: assessmentDate,
