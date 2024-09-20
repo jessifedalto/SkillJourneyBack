@@ -2,8 +2,8 @@ import Department from '../model/Department.js'
 
 export default class DepartmentService
 {
-    static async createDepartment(departamentData){
-        return await Department.create(departamentData);
+    static async createDepartment(departament_data){
+        return await Department.create(departament_data);
     }
 
     static async exists(name){
@@ -22,9 +22,9 @@ export default class DepartmentService
         return await departament.destroy();
     }
 
-    static async updateDepartament( id, departamentData ){
+    static async updateDepartament( id, departament_data ){
         const departament = await Department.update( 
-            departamentData,
+            departament_data,
             { where: { id: id }}
         );
 

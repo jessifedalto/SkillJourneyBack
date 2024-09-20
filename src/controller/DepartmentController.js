@@ -1,5 +1,4 @@
 import DepartmentService from "../services/DepartmentService.js";
-import Department from "../model/Department.js";
 
 export default class DepartmentController
 {
@@ -14,8 +13,8 @@ export default class DepartmentController
         };
         try {
             await DepartmentService.exists(department.name);
-            const newDepartament = await DepartmentService.createDepartment(department);
-            return res.status(201).send({ id: newDepartament.id,  message: "Departamento criado com sucesso." });
+            const new_department = await DepartmentService.createDepartment(department);
+            return res.status(201).send({ id: new_department.id,  message: "Departamento criado com sucesso." });
         } catch (error) {
             return res.status(500).send({ error: "Erro ao registrar departamento.", message: error.message });
         }
@@ -35,8 +34,8 @@ export default class DepartmentController
         };
 
         try {
-            const newDepartament = await DepartmentService.updateDepartament(id, department);
-            return res.status(200).send({ department: newDepartament,  message: "Departamento atualizado com sucesso." });
+            const updated_department = await DepartmentService.updateDepartament(id, department);
+            return res.status(200).send({ department: updated_department,  message: "Departamento atualizado com sucesso." });
         } catch (error) {
             return res.status(500).send({ error: "Erro ao atualizar o departmento.", message: error.message });
         }
