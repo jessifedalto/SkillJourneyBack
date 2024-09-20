@@ -23,13 +23,16 @@ export default class DepartmentService
     }
 
     static async updateDepartament( id, departamentData ){
-        const departament = await  Department.update( departamentData,
+        const departament = await Department.update( 
+            departamentData,
             { where: { id: id }}
         );
 
         if (!departament) throw Error('Departamento não existe.');
 
-        return Department.findByPk(id);
+        if (departament == 0) throw Error('Nenhum departamento atualizado.');
+
+        return await Department.findByPk(id);
     }
 
     static async getAllDepartament(){
