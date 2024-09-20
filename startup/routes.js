@@ -18,28 +18,29 @@ import documentChunck from '../src/routes/DocumentChunck.js'
 import quiz from '../src/routes/Quiz.js'
 import question from '../src/routes/Question.js'
 import option from '../src/routes/Option.js'
+import m from '../src/middlewares/middleware.js'
 
 export default function(app)
 {
     app
         .use(express.json())
-        .use('/sjapi/auth', auth)
-        .use('/sjapi/department', department)
-        .use('/sjapi/document', documentRoute)
-        .use('/sjapi/document-chunck', documentChunck)
-        .use('/sjapi/employee', employee)
-        .use('/sjapi/employee-skill', employeeSkill)
-        .use('/sjapi/employee-training', employeeTraining)
-        .use('/sjapi/option', option)
-        .use('/sjapi/question', question)
-        .use('/sjapi/quiz', quiz)
-        .use('/sjapi/skill', skill)
-        .use('/sjapi/tag', tag)
-        .use('/sjapi/training', training)
-        .use('/sjapi/training-content', trainingContent)
-        .use('/sjapi/training-content-tag', trainingContentTag)
-        .use('/sjapi/training-skill', trainingSkill)
-        .use('/sjapi/user', user)
-        .use('/sjapi/video', video)
-        .use('/sjapi/video-chunck', videoChunck)
+        .use('/sjapi/auth', m.decryptBody, auth)
+        .use('/sjapi/department', m.verifyJWT, department)
+        .use('/sjapi/document', m.verifyJWT, documentRoute)
+        .use('/sjapi/document-chunck', m.verifyJWT, documentChunck)
+        .use('/sjapi/employee', m.verifyJWT, employee)
+        .use('/sjapi/employee-skill', m.verifyJWT, employeeSkill)
+        .use('/sjapi/employee-training', m.verifyJWT, employeeTraining)
+        .use('/sjapi/option', m.verifyJWT, option)
+        .use('/sjapi/question', m.verifyJWT, question)
+        .use('/sjapi/quiz', m.verifyJWT, quiz)
+        .use('/sjapi/skill', m.verifyJWT, skill)
+        .use('/sjapi/tag', m.verifyJWT, tag)
+        .use('/sjapi/training', m.verifyJWT, training)
+        .use('/sjapi/training-content', m.verifyJWT, trainingContent)
+        .use('/sjapi/training-content-tag', m.verifyJWT, trainingContentTag)
+        .use('/sjapi/training-skill', m.verifyJWT, trainingSkill)
+        .use('/sjapi/user', m.verifyJWT, user)
+        .use('/sjapi/video', m.verifyJWT, video)
+        .use('/sjapi/video-chunck', m.verifyJWT, videoChunck)
 };
