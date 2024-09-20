@@ -36,11 +36,7 @@ export default class DepartmentService
     }
 
     static async getAllDepartament(){
-        const departament = await Department.findAll();
-
-        if (!departament) throw Error('Nenhum departamento foi registrado.');
-
-        return departament;
+        return await Department.findAll();
     }
 
 }

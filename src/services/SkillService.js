@@ -36,11 +36,7 @@ export default class SkillService
     }
 
     static async getAllSkills(){
-        const skill = await Skill.findAll();
-
-        if (!skill) throw Error('Nenhuma skill foi encontra.');
-
-        return skill;
+        return await Skill.findAll();
     }
 
     static async getSkillById(id){
@@ -49,6 +45,10 @@ export default class SkillService
         if (!skill) throw Error('Nenhuma skill foi encontra.');
 
         return skill;
+    }
+
+    static async getSkillByType(type){
+        return await Skill.findAll({ where: { type: type }});
     }
 
 }

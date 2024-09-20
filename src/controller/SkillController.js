@@ -65,7 +65,7 @@ export default class SkillController
 
         try {
             const skills = await SkillService.getSkillById(id);
-            return res.status(200).skills({ data: skills, message: "Skill encontrada com sucesso." });
+            return res.status(200).send({ data: skills, message: "Skill encontrada com sucesso." });
         } catch (error) {
             return res.status(500).send({ error: "Erro ao buscar skill.", message: error.message });
         }
@@ -82,6 +82,22 @@ export default class SkillController
             return res.status(200).send({ message: "Skill deletado com sucesso." });
         } catch (error) {
             return res.status(500).send({ error: "Erro ao deletar skill.", message: error.message });
+        }
+    }
+
+    static async getByType(req, res){
+        const { type } = req.params;
+
+        if (!type) return res.status(400).send({ message: "O tipo da skill é obrigatório." });
+        var formatted_type = type.toUpperCase();
+        
+        if (formatted_type !== "HARD" && formatted_type !== "SOFT") return res.status(400).send({ message: "O tipo da skill é inválido." });
+        
+        try {
+            const skills = await SkillService.getSkillByType(formatted_type);
+            return res.status(200).send({ data: skills, message: `${formatted_type} skills encontradas com sucesso.` });
+        } catch (error) {
+            return res.status(500).send({ error: `Erro ao encontrar ${formatted_type} skill.`, message: error.message });
         }
     }
 }

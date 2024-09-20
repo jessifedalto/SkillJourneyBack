@@ -8,6 +8,7 @@ route
     .delete('/delete/:id', SkillController.delete)
     .get('/:id', SkillController.getById)
     .get('/', SkillController.getAll)
+    .get('/type/:type', SkillController.getByType)
     .post('/create', SkillController.create)
 
 export default route;
