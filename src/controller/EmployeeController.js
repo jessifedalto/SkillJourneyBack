@@ -44,10 +44,10 @@ export default class EmployeeController {
         if (!id) return res.status(400).send({message: 'O id do employee é obrigatório'});
 
         try {
-            const employees = await EmployeeService.getEmployee(id);
-            return res.status(200).send({ data: employees, message: "Employees encontrados com sucesso." });
+            const employee = await EmployeeService.getEmployee(id);
+            return res.status(200).send({ Employee: employee, message: "Employee encontrado com sucesso." });
         } catch (error) {
-            return res.status(500).send({ error: "Erro ao buscar employees.", message: error.message });
+            return res.status(500).send({ error: "Erro ao buscar employee.", message: error.message });
         }
     }
 
