@@ -7,6 +7,7 @@ route
     .patch('/update/:id', TrainingContentController.update)
     .delete('/delete/:id', TrainingContentController.delete)
     .get('/training/:id', TrainingContentController.getByTraining)
-    .post('/create', TrainingContentController.create)
+    .post('/create/:trainingId', TrainingContentController.create)
+    .get('/:id', TrainingContentController.getById)
     
 export default route;
