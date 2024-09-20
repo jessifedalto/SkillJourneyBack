@@ -8,6 +8,7 @@ route
     .delete('/delete/:id', EmployeeTrainingController.delete)
     .get('/employee/:id', EmployeeTrainingController.getByEmployee)
     .get('/training/:id', EmployeeTrainingController.getByTraining)
-    .post('/create', EmployeeTrainingController.create)
+    .post('/create/:employeeId/:trainingId', EmployeeTrainingController.create)
+    .get('/:id', EmployeeTrainingController.getById)
     
 export default route;
