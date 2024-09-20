@@ -36,7 +36,7 @@ export default class DepartmentController
 
         try {
             const newDepartament = await DepartmentService.updateDepartament(id, department);
-            return res.status(201).send({ department: newDepartament,  message: "Departamento atualizado com sucesso." });
+            return res.status(200).send({ department: newDepartament,  message: "Departamento atualizado com sucesso." });
         } catch (error) {
             return res.status(500).send({ error: "Erro ao atualizar o departmento.", message: error.message });
         }
@@ -51,7 +51,7 @@ export default class DepartmentController
 
         try {
             await DepartmentService.deleteDepartament(id);
-            return res.status(201).send({ message: "Departamento deletado com sucesso." });
+            return res.status(200).send({ message: "Departamento deletado com sucesso." });
         } catch (error) {
             return res.status(500).send({ error: "Erro ao deletar departmento.", message: error.message });
         }
@@ -61,7 +61,7 @@ export default class DepartmentController
     {
         try {
             const departaments = await DepartmentService.getAllDepartament();
-            return res.status(201).send({ data: departaments, message: "Departamentos encontrados com sucesso." });
+            return res.status(200).send({ data: departaments, message: "Departamentos encontrados com sucesso." });
         } catch (error) {
             return res.status(500).send({ error: "Erro ao buscar departmentos.", message: error.message });
         }
