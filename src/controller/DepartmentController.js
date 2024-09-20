@@ -5,7 +5,7 @@ export default class DepartmentController
 {
     static async create(req, res)
     {
-        const { name } = req.json;
+        const { name } = req.body;
 
         if (!name) return res.status(400).send({ message: "O nome do departamento é obrigatório." });
 
@@ -24,7 +24,7 @@ export default class DepartmentController
     static async update(req, res)
     {
         const { id } = req.params;
-        const { name } = req.json;
+        const { name } = req.body;
 
         if (!id) return res.status(400).send({ message: "O id do departamento é obrigatório." });
 

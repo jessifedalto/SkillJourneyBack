@@ -2,13 +2,12 @@ import EmployeeService from "../services/EmployeeService.js";
 import bcrypt from "bcryptjs/dist/bcrypt.js";
 import UserService from "../services/UserService.js";
 import jwt from 'jsonwebtoken';
-import CryptoJS from 'crypto-js'
 
 export default class AuthController {
 
     static async register(req, res) {
 
-        const { full_name, birth_date, hire_date, position, departmentId, edv, email, role } = req.json;
+        const { full_name, birth_date, hire_date, position, departmentId, edv, email, role } = req.body;
 
         if (!full_name) return res.status(400).json({ message: "O nome é obrigatório" });
         if (!birth_date) return res.status(400).json({ message: "O nome é obrigatório" });
@@ -85,35 +84,4 @@ export default class AuthController {
         }
 
     }
-
-    static async verifyJWT(req, res, next) {
-        const authHeader = req.headers.authorization;
-        if (!authHeader) return res.status(401).json({ message: 'No token provided.' });
-
-        const [scheme, token] = authHeader.split(' ');
-
-        jwt.verify(token, process.env.SECRET, function (err, decoded) {
-            if (err) return res.status(401).json({ message: 'Não autorizado' });
-
-            req.userId = decoded.id;
-            req.employeeId = decoded.employeeId;
-            req.full_name = decoded.full_name;
-
-        });
-
-        try {
-            var key = process.env.SECRET;
-            var bytes = CryptoJS.AES.decrypt(req.body.jsonCrypt, key);
-            const decryptd = bytes.toString(CryptoJS.enc.Utf8);
-            const json = JSON.parse(decryptd);
-            req.json = json;
-            next();
-
-        } catch (eror) {
-            req.json = req.body;
-            next();
-        }
-    }
-
-
 }
