@@ -1,4 +1,3 @@
-import { where } from "sequelize";
 import Employee from "../model/Employee.js";
 
 export default class EmployeeService {
