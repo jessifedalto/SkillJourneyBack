@@ -1,4 +1,4 @@
-import EmployeeSkillService from "../services/EmplyeeSkillService";
+import EmployeeSkillService from "../services/EmployeeSkillService.js";
 
 export default class EmployeeSkillController {
     static async create(req, res) {
