@@ -38,7 +38,7 @@ export default class TrainingSkillController {
         };
 
         try {
-            const newTrainingSkill = await TrainingSkillService.updateTrainingSkill(id, employeeTraining);
+            const newTrainingSkill = await TrainingSkillService.updateTrainingSkill(id, trainingSkill);
             return res.status(200).send({ TrainingSkill: newTrainingSkill, message: "Training skill atualizada com sucesso." });
         } catch (error) {
             return res.status(500).send({ error: "Erro ao atualizar Training Skill.", message: error.message });
