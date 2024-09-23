@@ -1,7 +1,8 @@
 import { DataTypes, Model } from 'sequelize';
 import sequelizeInstance from '../../startup/db.js';
+import VideoChunck from './VideoChunck.js';
 
-class Video extends Model {}
+class Video extends Model { }
 
 Video.init({
     id: {
@@ -9,10 +10,10 @@ Video.init({
         defaultValue: DataTypes.UUIDV4, // Gera um UUID v4 por padrão
         primaryKey: true                // Define como chave primária
     },
-    trainingContentId:{
+    trainingContentId: {
         type: DataTypes.UUID,
         allowNull: false,
-        references:{
+        references: {
             model: 'tb_trainingcontent',
             key: 'id'
         }
@@ -33,4 +34,8 @@ Video.init({
     paranoid: true // Adiciona `deletedAt` para suporte a soft deletes
 });
 
+Video.hasMany(VideoChunck, {
+    foreignKey: 'videoId',
+    as: 'chunks' // Isso permitirá que você use 'chunks' na consulta
+});
 export default Video;
