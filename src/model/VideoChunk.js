@@ -2,9 +2,9 @@ import { DataTypes, Model } from 'sequelize';
 import sequelizeInstance from '../../startup/db.js';
 import Video from './Video.js'
 
-class VideoChunck extends Model {}
+class VideoChunk extends Model {}
 
-VideoChunck.init({
+VideoChunk.init({
     id: {
         type: DataTypes.UUID,           // Define o tipo UUID para o ID
         defaultValue: DataTypes.UUIDV4, // Gera um UUID v4 por padrão
@@ -34,9 +34,9 @@ VideoChunck.init({
     paranoid: true // Adiciona `deletedAt` para suporte a soft deletes
 });
 
-VideoChunck.belongsTo(Video, {
+VideoChunk.belongsTo(Video, {
     foreignKey: 'videoId',
     onDelete: 'CASCADE'
 });
 
-export default VideoChunck;
+export default VideoChunk;

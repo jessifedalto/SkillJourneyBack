@@ -1,6 +1,6 @@
 import { DataTypes, Model } from 'sequelize';
 import sequelizeInstance from '../../startup/db.js';
-import VideoChunck from './VideoChunck.js';
+import VideoChunk from './VideoChunk.js';
 
 class Video extends Model { }
 
@@ -34,8 +34,9 @@ Video.init({
     paranoid: true // Adiciona `deletedAt` para suporte a soft deletes
 });
 
-Video.hasMany(VideoChunck, {
+Video.hasMany(VideoChunk, {
     foreignKey: 'videoId',
     as: 'chunks' // Isso permitirá que você use 'chunks' na consulta
 });
+
 export default Video;

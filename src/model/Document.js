@@ -1,5 +1,6 @@
 import { DataTypes, Model } from 'sequelize';
 import sequelizeInstance from '../../startup/db.js';
+import DocumentChunk from './DocumentChunk.js';
 
 class Document extends Model {}
 
@@ -33,5 +34,10 @@ Document.init({
     timestamps: true, // Adiciona `createdAt` e `updatedAt`
     paranoid: true // Adiciona `deletedAt` para suporte a soft deletes
 });
+
+Document.hasMany(DocumentChunk, {
+    foreignKey: 'documentId',
+    as: 'chunks'
+})
 
 export default Document;

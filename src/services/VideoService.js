@@ -1,13 +1,13 @@
 // services/videoService.js
 import Video from '../models/Video.js';
-import VideoChunck from '../model/VideoChunck.js';
+import VideoChunk from '../model/VideoChunk.js';
 
 export default class VideoService {
     static async getChunksByVideoId(videoId) {
         try {
             const video = await Video.findByPk(videoId, {
                 include: [{
-                    model: VideoChunck,
+                    model: VideoChunk,
                     as: 'chunks'
                 }]
             });
