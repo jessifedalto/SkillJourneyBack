@@ -23,20 +23,20 @@ VideoChunk.init({
         allowNull: false
     },
     data: {
-        type: DataTypes.LONGBLOB,
+        type: DataTypes.BLOB,
         allowNull: false
     }
 }, {
     sequelize: sequelizeInstance,      // Passa a instância do Sequelize
-    modelName: 'VideoChunck',      // Nome do modelo
-    tableName: 'tb_videochunck', // Nome da tabela no banco de dados
+    modelName: 'VideoChunk',      // Nome do modelo
+    tableName: 'tb_videochunk', // Nome da tabela no banco de dados
     timestamps: true, // Adiciona `createdAt` e `updatedAt`
     paranoid: true // Adiciona `deletedAt` para suporte a soft deletes
 });
 
-VideoChunk.belongsTo(Video, {
-    foreignKey: 'videoId',
-    onDelete: 'CASCADE'
-});
+// VideoChunk.belongsTo(Video, {
+//     foreignKey: 'videoId',
+//     onDelete: 'CASCADE'
+// });
 
 export default VideoChunk;
