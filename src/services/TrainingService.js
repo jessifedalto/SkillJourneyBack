@@ -37,7 +37,16 @@ export default class TrainingService
     }
 
     static async getAllTraining(){
-        return await Training.findAll();
+        const currentDate = new Date();    
+
+        return await Training.findAll({
+            where: {
+                [Op.or]: [
+                    { due_date: { [Op.gte]: currentDate } }, // Data maior ou igual à data atual
+                    { due_date: { [Op.is]: null } } // ou due_date é NULL
+                ]
+            }
+        });
     }
 
     static async getTrainingById(id){
@@ -50,10 +59,6 @@ export default class TrainingService
 
     static async getTrainingByName(query){
         return await Training.findAll({ where: { name: {  [Op.like]: `%${query}%` } } });
-    }
-
-    static async getAllTraining(){
-        return await Training.findAll();
     }
 
 }

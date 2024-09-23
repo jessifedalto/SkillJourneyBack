@@ -48,7 +48,7 @@ export default class TrainingContentController {
         };
 
         try {
-            const newTrainingContent = await TrainingContentService.update(id, employeeTraining);
+            const newTrainingContent = await TrainingContentService.update(id, trainingContent);
             return res.status(200).send({ TrainingContent: newTrainingContent, message: "Training Content atualizada com sucesso." });
         } catch (error) {
             return res.status(500).send({ error: "Erro ao atualizar Training Content.", message: error.message });
