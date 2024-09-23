@@ -9,5 +9,6 @@ route
     .get('/training-content/:id', VideoController.getByTrainingContent)
     .get('/:id', VideoController.getById)
     .post('/create', VideoController.create)
+    .get('/:videoId/chuncks', VideoController.getChuncks)
     
 export default route;
