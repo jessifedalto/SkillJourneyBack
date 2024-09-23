@@ -12,9 +12,7 @@ import trainingContent from '../src/routes/TrainingContent.js'
 import trainingContentTag from '../src/routes/TrainingContentTag.js'
 import tag from '../src/routes/Tag.js'
 import video from '../src/routes/Video.js'
-import videoChunck from '../src/routes/VideoChunck.js'
 import documentRoute from '../src/routes/Document.js'
-import documentChunck from '../src/routes/DocumentChunck.js'
 import quiz from '../src/routes/Quiz.js'
 import question from '../src/routes/Question.js'
 import option from '../src/routes/Option.js'
@@ -27,7 +25,6 @@ export default function(app)
         .use('/sjapi/auth', m.decryptBody, auth)
         .use('/sjapi/department', m.verifyJWT, department)
         .use('/sjapi/document', m.verifyJWT, documentRoute)
-        .use('/sjapi/document-chunck', m.verifyJWT, documentChunck)
         .use('/sjapi/employee', m.verifyJWT, employee)
         .use('/sjapi/employee-skill', m.verifyJWT, employeeSkill)
         .use('/sjapi/employee-training', m.verifyJWT, employeeTraining)
@@ -42,5 +39,4 @@ export default function(app)
         .use('/sjapi/training-skill', m.verifyJWT, trainingSkill)
         .use('/sjapi/user', m.verifyJWT, user)
         .use('/sjapi/video', m.verifyJWT, video)
-        .use('/sjapi/video-chunck', m.verifyJWT, videoChunck)
 };
