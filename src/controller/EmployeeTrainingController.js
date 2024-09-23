@@ -46,7 +46,7 @@ export default class EmployeeTrainingController {
         if (!finishDate && !skill_updated) return res.status(400).send({ message: 'Algum parametro deve ser alterado' })
 
         const employeeTraining = {
-            finishDate: finishDate,
+            finish_date: finishDate,
             skill_updated: skill_updated
         };
 
