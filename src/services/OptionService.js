@@ -1,4 +1,3 @@
-import { Op } from "sequelize";
 import Option from "../model/Option.js"
 
 export default class OptionService {
@@ -16,7 +15,7 @@ export default class OptionService {
 
         if (option == 0) throw Error('Nenhuma alternativa atualizada.');
 
-        return await Question.findByPk(id);
+        return await Option.findByPk(id);
     }
 
     static async delete(id) {

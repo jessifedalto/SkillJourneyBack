@@ -32,7 +32,6 @@ export default class QuestionController {
         if (!statement && !difficultyLevel) return res.status(400).send({ message: "Algum parametro da questão deve mudar." });
 
         const question = {
-            quizId: quizId,
             statement: statement,
             difficulty_level: difficultyLevel
         };
@@ -64,8 +63,8 @@ export default class QuestionController {
         if (!id) return res.status(400).send({ message: "O id do quiz é obrigatório." });
 
         try {
-            await QuestionService.getByQuiz(id);
-            return res.status(200).send({ message: "Questões encontradas com sucesso." });
+            const questions = await QuestionService.getByQuiz(id);
+            return res.status(200).send({ data: questions, message: "Questões encontradas com sucesso." });
         } catch (error) {
             return res.status(500).send({ error: "Erro ao encontrar questões.", message: error.message });
         }

@@ -26,11 +26,10 @@ export default class OptionController {
         const { id } = req.params;
         const { text, isRight } = req.body;
 
-        if (!text || !isRight) return res.status(400).send({ message: "A afirmação e se ela é correta são obrigatórios." });
+        if (!text && !isRight) return res.status(400).send({ message: "Nenum campo informado." });
         if (!id) return res.status(400).send({ message: "O id da questão é obrigatório." });
 
         const option = {
-            questionId: id,
             text: text,
             is_right: isRight
         };
@@ -62,8 +61,8 @@ export default class OptionController {
         if (!id) return res.status(400).send({ message: "O id da questão é obrigatório." });
 
         try {
-            await OptionService.getByQuestion(id);
-            return res.status(200).send({ message: "Alternativas encontradas com sucesso." });
+            const options = await OptionService.getByQuestion(id);
+            return res.status(200).send({ data: options, message: "Alternativas encontradas com sucesso." });
         } catch (error) {
             return res.status(500).send({ error: "Erro ao encontrar alternativas.", message: error.message });
         }
