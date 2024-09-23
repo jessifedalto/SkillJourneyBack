@@ -8,6 +8,6 @@ route
     .delete('/delete/:id', OptionController.delete)
     .get('/question/:id', OptionController.getByQuestion)
     .get('/:id', OptionController.getById)
-    .post('/create', OptionController.create)
+    .post('/create/:questionId', OptionController.create)
     
 export default route;

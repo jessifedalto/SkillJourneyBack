@@ -2,9 +2,9 @@ import { DataTypes, Model } from 'sequelize';
 import sequelizeInstance from '../../startup/db.js';
 import Document from './Document.js'
 
-class DocumentChunck extends Model {}
+class DocumentChunk extends Model {}
 
-DocumentChunck.init({
+DocumentChunk.init({
     id: {
         type: DataTypes.UUID,           // Define o tipo UUID para o ID
         defaultValue: DataTypes.UUIDV4, // Gera um UUID v4 por padrão
@@ -35,10 +35,10 @@ DocumentChunck.init({
     paranoid: true // Adiciona `deletedAt` para suporte a soft deletes
 });
 
-DocumentChunck.belongsTo(Document, {
+DocumentChunk.belongsTo(Document, {
     foreignKey: 'documentId',
     onDelete: 'CASCADE'
 });
 
 
-export default DocumentChunck;
+export default DocumentChunk;
