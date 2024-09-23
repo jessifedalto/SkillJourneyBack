@@ -1,4 +1,5 @@
 import Skill from '../model/Skill.js'
+import { Op } from 'sequelize';
 
 export default class SkillService
 {
@@ -52,6 +53,9 @@ export default class SkillService
     }
 
     static async getSkillByName(query){
-        return await Skill.findAll({ where: { name: {  [Op.like]: `%${query}%` } } });
+        return await Skill.findAll({ where: {
+             name: {  [Op.like]: `%${query}%` } 
+            } 
+        });
     }
 }
