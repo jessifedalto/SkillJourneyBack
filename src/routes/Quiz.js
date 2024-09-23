@@ -6,7 +6,7 @@ const route = express.Router();
 route 
     .patch('/update/:id', QuizController.update)
     .delete('/delete/:id', QuizController.delete)
-    .get('/training-content/:id', QuizController.getByTrainingContent)
-    .post('/create', QuizController.create)
+    .get('/training-content/:trainingContentId', QuizController.getByTrainingContent)
+    .post('/create/:trainingContentId', QuizController.create)
     
 export default route;

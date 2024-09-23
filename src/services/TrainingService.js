@@ -33,11 +33,20 @@ export default class TrainingService
 
         if (training == 0) throw Error('Nenhum treinamento atualizado.');
 
-        return await training.findByPk(id);
+        return await Training.findByPk(id);
     }
 
     static async getAllTraining(){
-        return await Training.findAll();
+        const currentDate = new Date();    
+
+        return await Training.findAll({
+            where: {
+                [Op.or]: [
+                    { due_date: { [Op.gte]: currentDate } }, // Data maior ou igual à data atual
+                    { due_date: { [Op.is]: null } } // ou due_date é NULL
+                ]
+            }
+        });
     }
 
     static async getTrainingById(id){
