@@ -23,7 +23,7 @@ DocumentChunk.init({
         allowNull: false
     },
     data: {
-        type: DataTypes.LONGBLOB,
+        type: DataTypes.BLOB,
         allowNull: false
     }
     

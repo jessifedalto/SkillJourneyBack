@@ -23,7 +23,7 @@ VideoChunk.init({
         allowNull: false
     },
     data: {
-        type: DataTypes.LONGBLOB,
+        type: DataTypes.BLOB,
         allowNull: false
     }
 }, {
@@ -34,9 +34,9 @@ VideoChunk.init({
     paranoid: true // Adiciona `deletedAt` para suporte a soft deletes
 });
 
-VideoChunk.belongsTo(Video, {
-    foreignKey: 'videoId',
-    onDelete: 'CASCADE'
-});
+// VideoChunk.belongsTo(Video, {
+//     foreignKey: 'videoId',
+//     onDelete: 'CASCADE'
+// });
 
 export default VideoChunk;

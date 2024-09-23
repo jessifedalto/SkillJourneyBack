@@ -1,5 +1,5 @@
 // services/videoService.js
-import Video from '../models/Video.js';
+import Video from '../model/Video.js';
 import VideoChunk from '../model/VideoChunk.js';
 
 export default class VideoService {

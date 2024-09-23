@@ -1,4 +1,4 @@
-import OptionService from "../services/OptionService";
+import OptionService from "../services/OptionService.js";
 
 export default class OptionController {
     static async create(req, res) {
