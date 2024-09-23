@@ -114,6 +114,5 @@ export default class SkillController
         } catch (error) {
             return res.status(500).send({ error: "Erro ao buscar skills.", message: error.message });
         }
-
     }
 }

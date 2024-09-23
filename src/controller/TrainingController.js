@@ -14,10 +14,11 @@ export default class TrainingController
             description: description,
             duration: duration,
             due_date: due_date,
-            authorId: req.userId
+            authorId: req.employeeId
         };
+        
         try {
-            await TrainingService.exists(quiz.name);
+            await TrainingService.exists(training.name);
             const new_training = await TrainingService.createTraining(training);
             return res.status(201).send({ id: new_training.id,  message: "Treinamento criado com sucesso." });
         } catch (error) {
@@ -44,9 +45,9 @@ export default class TrainingController
     {
         const { id } = req.params;
         const { name, description, duration, due_date } = req.body;
-
+        
         if (!id) return res.status(400).send({ message: "O id do treinamento é obrigatório." });
-
+        
         if (!name && !description && !due_date && !duration) 
             return res.status(400).send({ message: "Nenhum campo informado." });
 
@@ -67,11 +68,36 @@ export default class TrainingController
 
     static async getById(req, res)
     {
-        
+        const { id } = req.params;
+        if (!id) return res.status(400).send({ message: "O id do treinamento é obrigatório." });
+
+        try {
+            const training = await TrainingService.getTrainingById(id);
+            return res.status(200).send({ data: training ,message: "Treinamento encontrado com sucesso." });
+        } catch (error) {
+            return res.status(500).send({ error: "Erro ao encontrar treinamento.", message: error.message });
+        }    
     }
 
     static async getByName(req, res)
     {
-        
+        const { name } = req.params;
+
+        if (!name) return res.status(400).send({message: 'O nome do treinamento é obrigatório.'});
+
+        try {
+            const trainings = await TrainingService.getTrainingByName(name);
+            return res.status(200).send({ data: trainings, message: "Treinamentos encontrados com sucesso." });
+        } catch (error) {
+            return res.status(500).send({ error: "Erro ao buscar treinamentos.", message: error.message });
+        }
+    }
+    static async getAll(req, res) {
+        try {
+            const trainings = await TrainingService.getAllTraining();
+            return res.status(200).send({ data: trainings, message: "Treinamentos encontradas com sucesso." });
+        } catch (error) {
+            return res.status(500).send({ error: "Erro ao buscar treinamentos.", message: error.message });
+        }
     }
 }

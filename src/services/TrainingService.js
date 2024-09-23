@@ -33,7 +33,7 @@ export default class TrainingService
 
         if (training == 0) throw Error('Nenhum treinamento atualizado.');
 
-        return await training.findByPk(id);
+        return await Training.findByPk(id);
     }
 
     static async getAllTraining(){
@@ -50,6 +50,10 @@ export default class TrainingService
 
     static async getTrainingByName(query){
         return await Training.findAll({ where: { name: {  [Op.like]: `%${query}%` } } });
+    }
+
+    static async getAllTraining(){
+        return await Training.findAll();
     }
 
 }

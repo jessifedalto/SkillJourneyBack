@@ -7,8 +7,8 @@ route
     .patch('/update/:id', TrainingController.update)
     .delete('/delete/:id', TrainingController.delete)
     .get('/:id', TrainingController.getById)
+    .get('/', TrainingController.getAll)
     .post('/create', TrainingController.create)
     .get('/search/:name', TrainingController.getByName)
-
     
 export default route;

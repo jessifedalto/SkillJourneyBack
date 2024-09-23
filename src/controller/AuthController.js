@@ -53,10 +53,6 @@ export default class AuthController {
     }
 
     static async login(req, res) {
-        // var key = process.env.SECRET;
-        // var bytes = CryptoJS.AES.decrypt(req.body.jsonCrypt, key);
-        // const decryptd = bytes.toString(CryptoJS.enc.Utf8);
-        // const json = JSON.parse(decryptd);
 
         const { email, password } = req.body;
 
@@ -64,21 +60,19 @@ export default class AuthController {
         if (!password) return res.status(400).json({ message: "A senha é obrigatória" });
 
         try {
-            const user = await UserService.validateUser(email, password)
+            const user = await UserService.validateUser(email, password);
 
             if (!user || !await bcrypt.compare(password, user.password)) {
                 return res.status(400).send({ message: "Invalid Email or password" });
             }
-            console.log(process.env.SECRET);
             
             const tk = jwt.sign(
-                { id: user.id },
+                { id: user.id, role: user.role ,employeeId: user.employeeId },
                 process.env.SECRET,
                 { expiresIn: '2d' }
             );
 
             return res.status(200).send({ token: tk });
-
 
         } catch (error) {
             return res.status(500).send({ message: "Error processing request", error: error.message });
