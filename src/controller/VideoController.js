@@ -21,7 +21,7 @@ export default class VideoController {
 
     }
 
-    static async getChuncks(req, res) {
+    static async getChunks(req, res) {
         const { videoId } = req.params;
 
         try {

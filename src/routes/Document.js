@@ -10,5 +10,6 @@ route
     .get('/training-content/:id', DocumentController.getByTrainingContent)
     .get('/:id', DocumentController.getById)
     .post('/create', DocumentController.create)
+    .get('/:documentId/chunks', DocumentController.getChunks)
     
 export default route;
