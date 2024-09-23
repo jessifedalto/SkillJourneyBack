@@ -1,4 +1,5 @@
 import Training from '../model/Training.js'
+import { Op } from 'sequelize';
 
 export default class TrainingService
 {

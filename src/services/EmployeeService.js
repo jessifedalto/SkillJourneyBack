@@ -1,4 +1,5 @@
 import Employee from "../model/Employee.js";
+import { Op } from 'sequelize';
 
 export default class EmployeeService {
     static async createEmployee(employeeData) {

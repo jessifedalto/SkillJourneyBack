@@ -11,6 +11,7 @@ function verifyJWT(req, res, next) {
         if (err) return res.status(401).json({ message: 'Não autorizado' });
 
         req.userId = decoded.id;
+        req.role = decoded.role;
         req.employeeId = decoded.employeeId;
         req.full_name = decoded.full_name;
 
