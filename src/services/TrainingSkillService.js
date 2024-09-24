@@ -35,7 +35,7 @@ export default class TrainingSkillService {
     }
 
     static async getBySkill(id) {
-        const trainingSkill = await TrainingSkill.findAll({where: {trainingId: id}});
+        const trainingSkill = await TrainingSkill.findAll({where: {skillId: id}});
     
         if(!trainingSkill) throw Error('Nenhuma training Skill cadastrada');
 
