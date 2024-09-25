@@ -14,7 +14,7 @@ export default class EmployeeSkillController {
         const employeeSkill = {
             employeeId: employeeId,
             skillId: skillId,
-            proficiency_level: proficiencyLevel,
+            profeciency_level: proficiencyLevel,
             assessment_date: assessmentDate,
             developmentPlan: developmentPlan
         };
@@ -44,15 +44,14 @@ export default class EmployeeSkillController {
 
         try {
             const newEmployeeSkill = await EmployeeSkillService.updateEmployeeSkill(id, employeeSkill);
-            return res.status(200).send({ EmployeeSkill: newEmployeeSkill,  message: "Employee Skill atualizada com sucesso." });
+            return res.status(200).send({ EmployeeSkill: newEmployeeSkill, message: "Employee Skill atualizada com sucesso." });
         } catch (error) {
             return res.status(500).send({ error: "Erro ao atualizar Employee Skill.", message: error.message });
         }
 
     }
 
-    static async delete(req, res)
-    {
+    static async delete(req, res) {
         const { id } = req.params;
 
         if (!id) return res.status(400).send({ message: "O id do employee é obrigatório." });
@@ -81,7 +80,7 @@ export default class EmployeeSkillController {
 
         try {
             const skillsEmployee = await EmployeeSkillService.getEmployeeSkillBySkill(id);
-            return res.status(200).send({ skillsEmployee: skillsEmployee, message: "Employee skills encontradas com sucesso." });
+            return res.status(200).send({ employees: skillsEmployee, message: "Employee skills encontradas com sucesso." });
         } catch (error) {
             return res.status(500).send({ error: "Erro ao buscar employee skills.", message: error.message });
         }
