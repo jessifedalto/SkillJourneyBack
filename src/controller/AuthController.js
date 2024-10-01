@@ -65,14 +65,14 @@ export default class AuthController {
             if (!user || !await bcrypt.compare(password, user.password)) {
                 return res.status(400).send({ message: "Invalid Email or password" });
             }
+            const employee = await EmployeeService.getEmployee(user.employeeId);
             
             const tk = jwt.sign(
-                { id: user.id, role: user.role ,employeeId: user.employeeId },
+                { fullName: employee.full_name, id: user.id, role: user.role , employeeId: user.employeeId },
                 process.env.SECRET,
                 { expiresIn: '2d' }
             );
-
-            return res.status(200).send({ token: tk });
+            return res.status(200).send({ token: tk , firstAccess: password === employee.edv });
 
         } catch (error) {
             return res.status(500).send({ message: "Error processing request", error: error.message });

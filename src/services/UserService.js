@@ -27,6 +27,7 @@ export default class UserService {
     }
 
     static async updateUser(id, userData) {
+        userData.password = await User.hashPassword(userData.password);
         const user = await User.update(
             userData,
             { where: {id: id}}
