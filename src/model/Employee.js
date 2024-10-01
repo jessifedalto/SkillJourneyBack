@@ -28,7 +28,7 @@ Employee.init({
     },
     departmentId:{
         type: DataTypes.UUID,
-        allowNull: false,
+        allowNull: true,
         references: {
             model: 'tb_department',
             key: 'id'

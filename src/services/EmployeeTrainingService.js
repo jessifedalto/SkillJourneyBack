@@ -1,4 +1,6 @@
+import Employee from '../model/Employee.js';
 import EmployeeTraining from '../model/EmployeeTraining.js'
+import Training from '../model/Training.js';
 
 export default class EmployeeTrainingService {
     static async createEmployeeTraining(employeeTrainingData) {
@@ -31,7 +33,13 @@ export default class EmployeeTrainingService {
 
         if(!employeeTraining) throw Error('Nenhuma employee training cadastrada');
 
-        return employeeTraining;
+        const trainingPromises = employeeTraining.map(async et => {
+            const training = await Training.findByPk(et.trainingId);
+            return training;
+        });
+        const trainings = await Promise.all(trainingPromises);
+
+        return trainings;
     }
 
     static async getEmployeeTrainingByTraining(id) {
@@ -39,7 +47,14 @@ export default class EmployeeTrainingService {
 
         if(!employeeTraining) throw Error('Nenhuma employee training cadastrada');
 
-        return employeeTraining;
+        const employeePromises = employeeTraining.map(async et => {
+            const employee = await Employee.findByPk(et.employeeId);
+            return employee;
+        });
+    
+        const employees = await Promise.all(employeePromises);
+
+        return employees;
     }
 
     static async getEmployeeTrainingById(id) {

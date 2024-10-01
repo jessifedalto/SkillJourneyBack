@@ -14,7 +14,6 @@ function verifyJWT(req, res, next) {
         req.role = decoded.role;
         req.employeeId = decoded.employeeId;
         req.full_name = decoded.full_name;
-
         next();
     });
 }
