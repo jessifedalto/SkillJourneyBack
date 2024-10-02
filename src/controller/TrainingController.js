@@ -81,21 +81,27 @@ export default class TrainingController
 
     static async getByName(req, res)
     {
+        const pageIndex = parseInt(req.query.pageIndex) - 1 || 0;
+        const pageSize = parseInt(req.query.pageSize) || 16;
         const { name } = req.params;
 
         if (!name) return res.status(400).send({message: 'O nome do treinamento é obrigatório.'});
 
         try {
             const trainings = await TrainingService.getTrainingByName(name);
-            return res.status(200).send({ data: trainings, message: "Treinamentos encontrados com sucesso." });
+            const items = trainings.slice(pageIndex * pageSize, (pageIndex + 1) * pageSize); 
+            return res.status(200).send({ data: items, message: "Treinamentos encontrados com sucesso." });
         } catch (error) {
             return res.status(500).send({ error: "Erro ao buscar treinamentos.", message: error.message });
         }
     }
     static async getAll(req, res) {
+        const pageIndex = parseInt(req.query.pageIndex) - 1 || 0;
+        const pageSize = parseInt(req.query.pageSize) || 16;
         try {
             const trainings = await TrainingService.getAllTraining();
-            return res.status(200).send({ data: trainings, message: "Treinamentos encontradas com sucesso." });
+            const items = trainings.slice(pageIndex * pageSize, (pageIndex + 1) * pageSize); 
+            return res.status(200).send({total:trainings.length, data: items, message: "Treinamentos encontradas com sucesso." });
         } catch (error) {
             return res.status(500).send({ error: "Erro ao buscar treinamentos.", message: error.message });
         }

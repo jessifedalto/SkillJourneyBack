@@ -52,9 +52,12 @@ export default class EmployeeController {
     }
 
     static async getAll(req, res) {
+        const pageIndex = parseInt(req.query.pageIndex) - 1 || 0;
+        const pageSize = parseInt(req.query.pageSize) || 10;
         try {
             const employees = await EmployeeService.getAllEmployees();
-            return res.status(200).send({ data: employees, message: "Employees encontrados com sucesso." });
+            const items = employees.slice(pageIndex * pageSize, (pageIndex + 1) * pageSize); 
+            return res.status(200).send({ data: items, message: "Employees encontrados com sucesso." });
         } catch (error) {
             return res.status(500).send({ error: "Erro ao buscar employees.", message: error.message });
         }
@@ -75,12 +78,15 @@ export default class EmployeeController {
 
     static async getByName(req, res) {
         const { name } = req.params;
+        const pageIndex = parseInt(req.query.pageIndex) - 1 || 0;
+        const pageSize = parseInt(req.query.pageSize) || 10;
 
         if (!name) return res.status(400).send({message: 'O nome do employees é obrigatório'});
 
         try {
             const employees = await EmployeeService.getEmployeeByName(name);
-            return res.status(200).send({ data: employees, message: "Employees encontrados com sucesso." });
+            const items = employees.slice(pageIndex * pageSize, (pageIndex + 1) * pageSize); 
+            return res.status(200).send({ data: items, message: "Employees encontrados com sucesso." });
         } catch (error) {
             return res.status(500).send({ error: "Erro ao buscar employees.", message: error.message });
         }
