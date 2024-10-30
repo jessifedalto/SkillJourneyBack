@@ -24,7 +24,7 @@ Quiz.init({
 }, {
     sequelize: sequelizeInstance,      // Passa a instância do Sequelize
     modelName: 'Quiz',      // Nome do modelo
-    tableName: 'tb_Quiz', // Nome da tabela no banco de dados
+    tableName: 'tb_quiz', // Nome da tabela no banco de dados
     timestamps: true, // Adiciona `createdAt` e `updatedAt`
     paranoid: true // Adiciona `deletedAt` para suporte a soft deletes
 });
