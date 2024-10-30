@@ -2,9 +2,9 @@ import express from 'express';
 import cors from 'cors';
 import routes from './startup/routes.js';
 import sequelizeInstance from './startup/db.js';
-import dotenv from 'dotenv';
+// import dotenv from 'dotenv';
 
-dotenv.config();
+// dotenv.config();
 
 const app = express();
 
