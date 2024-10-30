@@ -2,21 +2,21 @@ import jwt from 'jsonwebtoken';
 import CryptoJS from 'crypto-js'
 
 function verifyJWT(req, res, next) {
-    // const authHeader = req.headers.authorization;
-    // if (!authHeader) return res.status(401).json({ message: 'No token provided.' });
+    const authHeader = req.headers.authorization;
+    if (!authHeader) return res.status(401).json({ message: 'No token provided.' });
 
-    // const [scheme, token] = authHeader.split(' ');
+    const [scheme, token] = authHeader.split(' ');
 
-    // jwt.verify(token, process.env.SECRET, function (err, decoded) {
-    //     if (err) return res.status(401).json({ message: 'Não autorizado' });
+    jwt.verify(token, process.env.SECRET, function (err, decoded) {
+        if (err) return res.status(401).json({ message: 'Não autorizado' });
 
-    //     req.userId = decoded.id;
-    //     req.role = decoded.role;
-    //     req.employeeId = decoded.employeeId;
-    //     req.full_name = decoded.full_name;
-    //     next();
-    // });
-    next();
+        req.userId = decoded.id;
+        req.role = decoded.role;
+        req.employeeId = decoded.employeeId;
+        req.full_name = decoded.full_name;
+        next();
+    });
+    // next();
 }
 
 function decryptBody(req, res, next){
