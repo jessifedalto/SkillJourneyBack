@@ -57,7 +57,7 @@ export default class EmployeeController {
         try {
             const employees = await EmployeeService.getAllEmployees();
             const items = employees.slice(pageIndex * pageSize, (pageIndex + 1) * pageSize); 
-            return res.status(200).send({ data: items, message: "Employees encontrados com sucesso." });
+            return res.status(200).send({ total:employees.length, data: items, message: "Employees encontrados com sucesso." });
         } catch (error) {
             return res.status(500).send({ error: "Erro ao buscar employees.", message: error.message });
         }
