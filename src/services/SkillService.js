@@ -37,7 +37,11 @@ export default class SkillService
     }
 
     static async getAllSkills(){
-        return await Skill.findAll();
+        return await Skill.findAll({
+            order: [
+                ['name', 'ASC']
+            ]
+        });
     }
 
     static async getSkillById(id){
