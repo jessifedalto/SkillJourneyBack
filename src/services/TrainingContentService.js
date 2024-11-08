@@ -36,7 +36,7 @@ export default class TrainingContentService {
             where: {trainingId: id},
             order: [
                 [
-                    Sequelize.literal('CAST(SUBSTRING(name, 6) AS UNSIGNED)'),
+                    Sequelize.literal('CAST(SUBSTRING(name, 1) AS UNSIGNED)'),
                     'ASC'
                 ]
             ]
