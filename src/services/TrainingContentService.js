@@ -1,3 +1,4 @@
+import { Sequelize } from "sequelize";
 import TrainingContent from "../model/TrainingContent.js"
 
 export default class TrainingContentService {
@@ -31,9 +32,17 @@ export default class TrainingContentService {
     }
 
     static async getByTraining(id) {
-        const trainingContent = await TrainingContent.findAll({where: {trainingId: id}});
+        const trainingContent = await TrainingContent.findAll({
+            where: {trainingId: id},
+            order: [
+                [
+                    Sequelize.literal('CAST(SUBSTRING(name, 6) AS UNSIGNED)'),
+                    'ASC'
+                ]
+            ]
+        });
     
-        if(!trainingContent) throw Error('Nenhuma training Skill cadastrada');
+        if(!trainingContent || trainingContent.length === 0) throw Error('Nenhuma training Skill cadastrada');
 
         return trainingContent;
     }
