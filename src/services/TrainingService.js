@@ -45,7 +45,10 @@ export default class TrainingService
                     { due_date: { [Op.gte]: currentDate } }, // Data maior ou igual à data atual
                     { due_date: { [Op.is]: null } } // ou due_date é NULL
                 ]
-            }
+            },
+            order: [
+                ['name', 'ASC']
+            ]
         });
     }
 
