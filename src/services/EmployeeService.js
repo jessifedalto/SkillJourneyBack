@@ -39,7 +39,7 @@ export default class EmployeeService {
     static async getAllEmployees() {
         return await Employee.findAll({
             order: [
-                ['name', 'ASC']
+                ['full_name', 'ASC']
             ]
         });
     }
