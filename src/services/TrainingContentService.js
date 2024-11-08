@@ -35,10 +35,7 @@ export default class TrainingContentService {
         const trainingContent = await TrainingContent.findAll({
             where: {trainingId: id},
             order: [
-                [
-                    Sequelize.literal('CAST(SUBSTRING(name, 1) AS UNSIGNED)'),
-                    'ASC'
-                ]
+                ['name', 'ASC']
             ]
         });
     
