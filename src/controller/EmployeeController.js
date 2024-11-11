@@ -19,7 +19,7 @@ export default class EmployeeController {
 
         try {
             const newEmployee = await EmployeeService.updateEmployee(id, employee);
-            return res.status(200).send({ Employee: newEmployee, message: "Employee atualizado com sucesso." });
+            return res.status(200).send({ data: newEmployee, message: "Employee atualizado com sucesso." });
         } catch (error) {
             return res.status(500).send({ error: "Erro ao atualizar Employee.", message: error.message });
         }
@@ -45,7 +45,7 @@ export default class EmployeeController {
 
         try {
             const employee = await EmployeeService.getEmployee(id);
-            return res.status(200).send({ Employee: employee, message: "Employee encontrado com sucesso." });
+            return res.status(200).send({ data: employee, message: "Employee encontrado com sucesso." });
         } catch (error) {
             return res.status(500).send({ error: "Erro ao buscar employee.", message: error.message });
         }
@@ -57,7 +57,7 @@ export default class EmployeeController {
         try {
             const employees = await EmployeeService.getAllEmployees();
             const items = employees.slice(pageIndex * pageSize, (pageIndex + 1) * pageSize); 
-            return res.status(200).send({ total:employees.length, data: items, message: "Employees encontrados com sucesso." });
+            return res.status(200).send({ total: employees.length, data: items, message: "Employees encontrados com sucesso." });
         } catch (error) {
             return res.status(500).send({ error: "Erro ao buscar employees.", message: error.message });
         }

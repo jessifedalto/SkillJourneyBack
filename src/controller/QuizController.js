@@ -39,7 +39,7 @@ export default class QuizController
 
         try {
             const updated_quiz = await QuizService.updateQuiz(id, quiz);
-            return res.status(200).send({ department: updated_quiz,  message: "Quiz atualizado com sucesso." });
+            return res.status(200).send({ data: updated_quiz,  message: "Quiz atualizado com sucesso." });
         } catch (error) {
             return res.status(500).send({ error: "Erro ao atualizar o quiz.", message: error.message });
         }

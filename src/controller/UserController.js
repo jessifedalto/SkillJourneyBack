@@ -17,7 +17,7 @@ export default class UserController {
 
         try {
             const newUser = await UserService.updateUser(id, user);
-            return res.status(200).send({ User: newUser, message: "User atualizado com sucesso." });
+            return res.status(200).send({ data: newUser, message: "User atualizado com sucesso." });
         } catch (error) {
             return res.status(500).send({ error: "Erro ao atualizar User.", message: error.message });
         }
@@ -30,7 +30,7 @@ export default class UserController {
 
         try {
             const user = await UserService.getUser(id);
-            return res.status(200).send({ User: user, message: "User encontrado com sucesso." });
+            return res.status(200).send({ data: user, message: "User encontrado com sucesso." });
         } catch (error) {
             return res.status(500).send({ error: "Erro ao buscar user.", message: error.message });
         }

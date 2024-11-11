@@ -38,7 +38,7 @@ export default class QuestionController {
 
         try {
             const updatedQuestion = await QuestionService.update(id, question);
-            return res.status(200).send({ department: updatedQuestion, message: "Questão atualizado com sucesso." });
+            return res.status(200).send({ data: updatedQuestion, message: "Questão atualizado com sucesso." });
         } catch (error) {
             return res.status(500).send({ error: "Erro ao atualizar a questão.", message: error.message });
         }
@@ -77,7 +77,7 @@ export default class QuestionController {
 
         try {
             const question = await QuestionService.getQuestion(id);
-            return res.status(200).send({ Questão: question, message: "Questão encontrada com sucesso." });
+            return res.status(200).send({ data: question, message: "Questão encontrada com sucesso." });
         } catch (error) {
             return res.status(500).send({ error: "Erro ao buscar questão.", message: error.message });
         }

@@ -44,7 +44,7 @@ export default class EmployeeSkillController {
 
         try {
             const newEmployeeSkill = await EmployeeSkillService.updateEmployeeSkill(id, employeeSkill);
-            return res.status(200).send({ EmployeeSkill: newEmployeeSkill, message: "Employee Skill atualizada com sucesso." });
+            return res.status(200).send({ data: newEmployeeSkill, message: "Employee Skill atualizada com sucesso." });
         } catch (error) {
             return res.status(500).send({ error: "Erro ao atualizar Employee Skill.", message: error.message });
         }
@@ -69,7 +69,7 @@ export default class EmployeeSkillController {
 
         try {
             const employeeSkills = await EmployeeSkillService.getEmployeeSkillByEmployee(id);
-            return res.status(200).send({ employeeSkills: employeeSkills, message: "Employee skills encontradas com sucesso." });
+            return res.status(200).send({ data: employeeSkills, message: "Employee skills encontradas com sucesso." });
         } catch (error) {
             return res.status(500).send({ error: "Erro ao buscar employee skills.", message: error.message });
         }
@@ -80,7 +80,7 @@ export default class EmployeeSkillController {
 
         try {
             const skillsEmployee = await EmployeeSkillService.getEmployeeSkillBySkill(id);
-            return res.status(200).send({ employees: skillsEmployee, message: "Employee skills encontradas com sucesso." });
+            return res.status(200).send({ data: skillsEmployee, message: "Employee skills encontradas com sucesso." });
         } catch (error) {
             return res.status(500).send({ error: "Erro ao buscar employee skills.", message: error.message });
         }

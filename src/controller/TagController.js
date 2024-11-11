@@ -47,7 +47,7 @@ export default class TagController {
 
         try {
             const newTag = await TagService.update(id, tag);
-            return res.status(200).send({ Tag: newTag, message: "Tag atualizada com sucesso." });
+            return res.status(200).send({ data: newTag, message: "Tag atualizada com sucesso." });
         } catch (error) {
             return res.status(500).send({ error: "Erro ao atualizar Tag.", message: error.message });
         }

@@ -39,7 +39,7 @@ export default class TrainingSkillController {
 
         try {
             const newTrainingSkill = await TrainingSkillService.updateTrainingSkill(id, trainingSkill);
-            return res.status(200).send({ TrainingSkill: newTrainingSkill, message: "Training skill atualizada com sucesso." });
+            return res.status(200).send({ data: newTrainingSkill, message: "Training skill atualizada com sucesso." });
         } catch (error) {
             return res.status(500).send({ error: "Erro ao atualizar Training Skill.", message: error.message });
         }
@@ -64,7 +64,7 @@ export default class TrainingSkillController {
 
         try {
             const trainingSkill = await TrainingSkillService.getBySkill(id);
-            return res.status(200).send({ TrainingSkill: trainingSkill, message: "Training skills encontradas com sucesso." });
+            return res.status(200).send({ data: trainingSkill, message: "Training skills encontradas com sucesso." });
         } catch (error) {
             return res.status(500).send({ error: "Erro ao buscar training skills.", message: error.message });
         }
@@ -75,7 +75,7 @@ export default class TrainingSkillController {
 
         try {
             const trainingSkill = await TrainingSkillService.getByTraining(id);
-            return res.status(200).send({ TrainingSkill: trainingSkill, message: "Training skills encontradas com sucesso." });
+            return res.status(200).send({ data: trainingSkill, message: "Training skills encontradas com sucesso." });
         } catch (error) {
             return res.status(500).send({ error: "Erro ao buscar training skills.", message: error.message });
         }

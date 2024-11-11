@@ -52,7 +52,7 @@ export default class EmployeeTrainingController {
 
         try {
             const newEmployeeTraining = await EmployeeTrainingService.updateEmployeeTraining(id, employeeTraining);
-            return res.status(200).send({ EmployeeTraining: newEmployeeTraining, message: "Employee Training atualizada com sucesso." });
+            return res.status(200).send({ data: newEmployeeTraining, message: "Employee Training atualizada com sucesso." });
         } catch (error) {
             return res.status(500).send({ error: "Erro ao atualizar Employee Training.", message: error.message });
         }
@@ -64,7 +64,7 @@ export default class EmployeeTrainingController {
 
         try {
             const employeeTraining = await EmployeeTrainingService.getEmployeeTrainingByEmployee(id);
-            return res.status(200).send({ trainings: employeeTraining, message: "Employee trainings encontradas com sucesso." });
+            return res.status(200).send({ data: employeeTraining, message: "Employee trainings encontradas com sucesso." });
         } catch (error) {
             return res.status(500).send({ error: "Erro ao buscar employee training.", message: error.message });
         }
@@ -75,7 +75,7 @@ export default class EmployeeTrainingController {
 
         try {
             const employeeTraining = await EmployeeTrainingService.getEmployeeTrainingByTraining(id);
-            return res.status(200).send({ employees: employeeTraining, message: "Employee trainings encontradas com sucesso." });
+            return res.status(200).send({ data: employeeTraining, message: "Employee trainings encontradas com sucesso." });
         } catch (error) {
             return res.status(500).send({ error: "Erro ao buscar employee training.", message: error.message });
         }
@@ -86,7 +86,7 @@ export default class EmployeeTrainingController {
 
         try {
             const employeeTraining = await EmployeeTrainingService.getEmployeeTrainingById(id);
-            return res.status(200).send({ EmployeeTraining: employeeTraining, message: "Employee trainings encontradas com sucesso." });
+            return res.status(200).send({ data: employeeTraining, message: "Employee trainings encontradas com sucesso." });
         } catch (error) {
             return res.status(500).send({ error: "Erro ao buscar employee training.", message: error.message });
         }

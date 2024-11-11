@@ -60,7 +60,7 @@ export default class TrainingController
 
         try {
             const updated_training = await TrainingService.updateTraining(id, training);
-            return res.status(200).send({ training: updated_training,  message: "Treinamento atualizado com sucesso." });
+            return res.status(200).send({ data: updated_training,  message: "Treinamento atualizado com sucesso." });
         } catch (error) {
             return res.status(500).send({ error: "Erro ao atualizar o treinamento.", message: error.message });
         }
