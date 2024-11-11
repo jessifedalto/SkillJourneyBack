@@ -65,4 +65,17 @@ export default class DepartmentController
             return res.status(500).send({ error: "Erro ao buscar departmentos.", message: error.message });
         }
     }
+
+    static async getById(req, res) {
+        const { id } = req.params;
+
+        if (!id) return res.status(400).send({message: 'O id do departamento é obrigatório'});
+
+        try {
+            const department = await DepartmentService.getDepartment(id);
+            return res.status(200).send({ data: department, message: "Departamento encontrado com sucesso." });
+        } catch (error) {
+            return res.status(500).send({ error: "Erro ao buscar departamento.", message: error.message });
+        }
+    }
 }

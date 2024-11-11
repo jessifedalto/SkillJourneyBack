@@ -39,4 +39,8 @@ export default class DepartmentService
         return await Department.findAll();
     }
 
+    static async getDepartment(id){
+        return await Department.findByPk(id);
+    }
+
 }
