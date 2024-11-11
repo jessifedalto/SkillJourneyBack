@@ -41,17 +41,19 @@ export default class SkillController
 
         try {
             const updated_skill = await SkillService.updateSkill(id, skill);
-            return res.status(200).send({ skill: updated_skill,  message: "Skill atualizado com sucesso." });
+            return res.status(200).send({ data: updated_skill,  message: "Skill atualizado com sucesso." });
         } catch (error) {
             return res.status(500).send({ error: "Erro ao atualizar o skill.", message: error.message });
         }
     }
 
-    static async getAll(req, res)
-    {
+    static async getAll(req, res){
+        const pageIndex = parseInt(req.query.pageIndex) - 1 || 0;
+        const pageSize = parseInt(req.query.pageSize) || 15;
         try {
             const skills = await SkillService.getAllSkills();
-            return res.status(200).send({ data: skills, message: "Skills encontradas com sucesso." });
+            const items = skills.slice(pageIndex * pageSize, (pageIndex + 1) * pageSize); 
+            return res.status(200).send({ total: skills.length, data: items, message: "Skills encontradas com sucesso." });
         } catch (error) {
             return res.status(500).send({ error: "Erro ao buscar skills.", message: error.message });
         }
