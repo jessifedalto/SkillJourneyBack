@@ -8,5 +8,6 @@ route
     .delete('/delete/:id', DepartmentController.delete)
     .get('/', DepartmentController.getAll)
     .post('/create', DepartmentController.create)
+    .get('/:id', DepartmentController.getById)
 
 export default route;

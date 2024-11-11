@@ -35,7 +35,7 @@ export default class DepartmentController
 
         try {
             const updated_department = await DepartmentService.updateDepartament(id, department);
-            return res.status(200).send({ department: updated_department,  message: "Departamento atualizado com sucesso." });
+            return res.status(200).send({ data: updated_department,  message: "Departamento atualizado com sucesso." });
         } catch (error) {
             return res.status(500).send({ error: "Erro ao atualizar o departmento.", message: error.message });
         }
