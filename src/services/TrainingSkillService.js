@@ -1,3 +1,4 @@
+import Training from "../model/Training.js";
 import TrainingSkill from "../model/TrainingSkill.js"
 
 export default class TrainingSkillService {
@@ -39,6 +40,13 @@ export default class TrainingSkillService {
     
         if(!trainingSkill) throw Error('Nenhuma training Skill cadastrada');
 
-        return trainingSkill;
+        const trainingPromises = trainingSkill.map(async ts => {
+            const training = await Training.findByPk(ts.trainingId);
+            return training;
+        });
+
+        const trainings = await Promise.all(trainingPromises);
+
+        return trainings;
     }
 }
