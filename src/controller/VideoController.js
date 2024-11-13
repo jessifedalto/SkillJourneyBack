@@ -15,8 +15,6 @@ export default class VideoController {
 
     static async getByTrainingContent(req, res) {
         const { id } = req.params;
-        const pageIndex = parseInt(req.query.pageIndex) - 1 || 0;
-        const pageSize = parseInt(req.query.pageSize) || 16;
         try {
             const videos = await VideoService.getByContent(id);
             const items = videos.slice(pageIndex * pageSize, (pageIndex + 1) * pageSize); 

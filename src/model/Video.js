@@ -39,4 +39,15 @@ Video.hasMany(VideoChunk, {
     as: 'chunks' // Isso permitirá que você use 'chunks' na consulta
 });
 
+
+// ,
+//     videoHeaderId: {
+//         type: DataTypes.UUID,          // Define o tipo UUID para o VideoHeaderId
+//         allowNull: true,               // Permite que seja nulo (opcional)
+//         references: {
+//             model: 'tb_videochunk',    // Nome da tabela tb_videochunk
+//             key: 'id'                  // Chave de referência na tabela 'tb_videochunk'
+//         }
+//     }
+
 export default Video;
