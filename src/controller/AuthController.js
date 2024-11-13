@@ -68,7 +68,7 @@ export default class AuthController {
             const employee = await EmployeeService.getEmployee(user.employeeId);
             
             const tk = jwt.sign(
-                { fullName: employee.full_name, id: user.id, role: user.role , employeeId: user.employeeId },
+                { full_name: employee.full_name, id: user.id, role: user.role , employeeId: user.employeeId },
                 process.env.SECRET,
                 { expiresIn: '2d' }
             );
