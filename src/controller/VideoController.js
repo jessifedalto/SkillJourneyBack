@@ -17,8 +17,8 @@ export default class VideoController {
         const { id } = req.params;
         try {
             const videos = await VideoService.getByContent(id);
-            const items = videos.slice(pageIndex * pageSize, (pageIndex + 1) * pageSize); 
-            return res.status(200).send({ total:videos.length, data: items, message: "videos encontrada com sucesso." });
+            
+            return res.status(200).send({ total:videos.length, data: videos, message: "videos encontrada com sucesso." });
         } catch (error) {
             return res.status(500).send({ error: "Erro ao buscar videos.", message: error.message });
         }
