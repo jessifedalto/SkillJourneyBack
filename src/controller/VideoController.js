@@ -18,7 +18,7 @@ export default class VideoController {
         try {
             const videos = await VideoService.getByContent(id);
             
-            return res.status(200).send({ total:videos.length, data: videos, message: "videos encontrada com sucesso." });
+            return res.status(200).send({ data: videos, message: "videos encontrada com sucesso." });
         } catch (error) {
             return res.status(500).send({ error: "Erro ao buscar videos.", message: error.message });
         }
