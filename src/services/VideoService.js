@@ -21,12 +21,20 @@ export default class VideoService {
     }
 
     static async getByContent(contentId){
-        const [results, metadata] = await sequelizeInstance.query(`SELECT * FROM tb_video WHERE TrainingContentId = ${contentId}`);
-
-        return results;
-
-        // const videos = await Video.findAll({ where: { trainingContentId: contentId } });
-        // return videos;
+        try {
+            const [results, metadata] = await sequelizeInstance.query(
+                'SELECT * FROM tb_video WHERE TrainingContentId = :contentId', 
+                {
+                    replacements: { contentId }, // substitui :contentId pelo valor da variável contentId
+                    type: sequelizeInstance.QueryTypes.SELECT // garante que o resultado será um array de resultados
+                }
+            );
+        
+            return results;
+        } catch (error) {
+            throw new Error('Erro ao buscar vídeos: ' + error.message);
+        }
+        
 
     }
 }
