@@ -25,16 +25,15 @@ export default class VideoService {
             const [results, metadata] = await sequelizeInstance.query(
                 'SELECT * FROM tb_video WHERE TrainingContentId = :contentId', 
                 {
-                    replacements: { contentId }, // substitui :contentId pelo valor da variável contentId
-                    type: sequelizeInstance.QueryTypes.SELECT // garante que o resultado será um array de resultados
+                    replacements: { contentId },  // Substitui :contentId pelo valor da variável contentId
+                    type: sequelizeInstance.QueryTypes.SELECT // Retorna como lista de objetos
                 }
             );
-        
-            return results;
+            
+            // Garantir que sempre seja retornado um array, mesmo que haja apenas um resultado
+            return Array.isArray(results) ? results : [results];  // Caso haja apenas um item, envolve em um array
         } catch (error) {
             throw new Error('Erro ao buscar vídeos: ' + error.message);
         }
-        
-
     }
 }
