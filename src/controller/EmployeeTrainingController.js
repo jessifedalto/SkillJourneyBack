@@ -6,7 +6,7 @@ export default class EmployeeTrainingController {
 
         if (!employeeId || !trainingId) return res.status(400).send({ message: 'Os id são obrigatórios' })
 
-        if (!skill_updated) return res.status(400).send({ message: 'O estado da skill é obrigatório' })
+        if (skill_updated == null) return res.status(400).send({ message: 'O estado da skill é obrigatório' })
 
         const employeeTraining = {
             employeeId: employeeId,
