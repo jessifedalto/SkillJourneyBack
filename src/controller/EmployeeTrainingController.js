@@ -2,8 +2,7 @@ import EmployeeTrainingService from "../services/EmployeeTrainingService.js";
 
 export default class EmployeeTrainingController {
     static async create(req, res) {
-        const { employeeId, trainingId } = req.params;
-        const { finishDate, skill_updated } = req.body;
+        const { employeeId, trainingId, finishDate, skill_updated } = req.body;
 
         if (!employeeId || !trainingId) return res.status(400).send({ message: 'Os id são obrigatórios' })
 
