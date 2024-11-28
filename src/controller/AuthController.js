@@ -62,12 +62,9 @@ export default class AuthController {
         try {
             const user = await UserService.validateUser(email, password);
 
-            // if (!user || !await bcrypt.compare(password, user.password)) {
-            //     return res.status(400).send({ message: "Invalid Email or password" });
-            // }
-            
-            if (!user || password != user.password)
+            if (!user || !await bcrypt.compare(password, user.password)) {
                 return res.status(400).send({ message: "Invalid Email or password" });
+            }
             
             const employee = await EmployeeService.getEmployee(user.employeeId);
             
