@@ -64,4 +64,14 @@ export default class EmployeeTrainingService {
 
         return employeeTraining;
     }
+
+    static async verifySubscribe(trainingId, employeeId) {
+        const employees = await this.getEmployeeTrainingByTraining(trainingId);
+
+        if (!employees) throw Error('Nenhum funcionário inscrito');
+
+        const isEnrolled = employees.some(emp => emp.id == employeeId)
+
+        return isEnrolled;
+    }
 }

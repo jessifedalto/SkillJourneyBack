@@ -90,4 +90,20 @@ export default class EmployeeTrainingController {
             return res.status(500).send({ error: "Erro ao buscar employee training.", message: error.message });
         }
     }
+
+    static async verifySubscribe(req, res) {
+        const { trainingId } = req.params;
+        const { employeeId } = res.employeeId;
+
+        if (!trainingId) return res.status(400).send({ message: 'O id é obrigatório' })
+
+        if (!employeeId) return res.status(400).send({ messsage: 'Nenhum usuário logado'})
+
+        try {
+            const isEnrolled = await EmployeeTrainingService.verifySubscribe(trainingId, employeeId);
+            return res.status(200).send({ data: isEnrolled, message: "Funcionário encontrado com sucesso."});
+        } catch (error) {
+            return res.status(500).send({ error: "Erro ao buscar funcionário", message: error.message})
+        }
+    }
 }
