@@ -29,9 +29,9 @@ export default class VideoService {
                     type: sequelizeInstance.QueryTypes.SELECT // Retorna como lista de objetos
                 }
             );
-            
+            return results;
             // Garantir que sempre seja retornado um array, mesmo que haja apenas um resultado
-            return Array.isArray(results) ? results : [results];  // Caso haja apenas um item, envolve em um array
+            // return Array.isArray(results) ? results : [results];  // Caso haja apenas um item, envolve em um array
         } catch (error) {
             throw new Error('Erro ao buscar vídeos: ' + error.message);
         }
