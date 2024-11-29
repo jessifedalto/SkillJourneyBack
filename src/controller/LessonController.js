@@ -16,9 +16,9 @@ export default class LessonController {
 
         try {
             const newLesson = await LessonService.create(Lesson);
-            return res.status(201).send({ id: newLesson.id, message: 'TLesson cadastrada' });
+            return res.status(201).send({ id: newLesson.id, message: 'Lesson cadastrada' });
         } catch (error) {
-            return res.status(500).send({ error: "Erro ao registrar tLesson.", message: error.message });
+            return res.status(500).send({ error: "Erro ao registrar Lesson.", message: error.message });
         }
     }
 
@@ -29,9 +29,9 @@ export default class LessonController {
 
         try {
             await LessonService.delete(id);
-            return res.status(200).send({ message: "TLesson deletada com sucesso." });
+            return res.status(200).send({ message: "Lesson deletada com sucesso." });
         } catch (error) {
-            return res.status(500).send({ error: "Erro ao deletar TLesson.", message: error.message });
+            return res.status(500).send({ error: "Erro ao deletar Lesson.", message: error.message });
         }
     }
 
@@ -49,9 +49,9 @@ export default class LessonController {
 
         try {
             const newLesson = await LessonService.update(id, Lesson);
-            return res.status(200).send({ data: newLesson, message: "TLesson atualizada com sucesso." });
+            return res.status(200).send({ data: newLesson, message: "Lesson atualizada com sucesso." });
         } catch (error) {
-            return res.status(500).send({ error: "Erro ao atualizar TLesson.", message: error.message });
+            return res.status(500).send({ error: "Erro ao atualizar Lesson.", message: error.message });
         }
     }
 
@@ -59,10 +59,10 @@ export default class LessonController {
         const { id } = req.params;
 
         try {
-            const Lesson = await LessonService.getByTraining(id);
-            return res.status(200).send({ data: Lesson, message: "tLesson encontrada com sucesso." });
+            const lessons = await LessonService.getByTraining(id);
+            return res.status(200).send({ data: lessons, message: "Lesson encontrada com sucesso." });
         } catch (error) {
-            return res.status(500).send({ error: "Erro ao buscar tLessons.", message: error.message });
+            return res.status(500).send({ error: "Erro ao buscar Lessons.", message: error.message });
         }
     }
 
@@ -70,10 +70,10 @@ export default class LessonController {
         const { id } = req.params;
 
         try {
-            const Lesson = await LessonService.getById(id);
-            return res.status(200).send({ data: Lesson, message: "tLesson encontrada com sucesso." });
+            const lessons = await LessonService.getById(id);
+            return res.status(200).send({ data: lessons, message: "Lesson encontrada com sucesso." });
         } catch (error) {
-            return res.status(500).send({ error: "Erro ao buscar tLesson.", message: error.message });
+            return res.status(500).send({ error: "Erro ao buscar Lesson.", message: error.message });
         }
     }
 }
