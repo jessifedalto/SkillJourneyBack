@@ -14,19 +14,18 @@ Content.init({
         type: DataTypes.UUID,
         allowNull: false,
         references:{
-            model: 'tb_trainingcontent',
+            model: 'tb_lesson',
             key: 'id'
         }
     },
-    text: {
-        type: DataTypes.STRING(200),
+    contentText: {
+        type: DataTypes.STRING(1000),
         allowNull: false
     },
-    type: {
+    contentType: {
         type: DataTypes.ENUM(['TITLE', 'NORMAL', 'LIST']),
         allowNull: false
     }
-    
 }, {
     sequelize: sequelizeInstance,      // Passa a instância do Sequelize
     modelName: 'Content',      // Nome do modelo
@@ -39,6 +38,5 @@ Content.belongsTo(Lesson, {
     foreignKey: 'lessonId',
     onDelete: 'CASCADE'
 });
-
 
 export default Content;
