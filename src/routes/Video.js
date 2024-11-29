@@ -6,7 +6,7 @@ const route = express.Router();
 route 
     .patch('/update/:id', VideoController.update)
     .delete('/delete/:id', VideoController.delete)
-    .get('/training-content/:id', VideoController.getByTrainingContent)
+    .get('/lesson/:id', VideoController.getByLesson)
     .get('/:id', VideoController.getById)
     .post('/create/:trainingContentId', VideoController.create)
     .get('/:videoId/chunks', VideoController.getChunks)

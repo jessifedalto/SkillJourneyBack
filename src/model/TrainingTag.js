@@ -1,10 +1,10 @@
 import { DataTypes, Model } from 'sequelize';
 import sequelizeInstance from '../../startup/db.js';
-import TrainingContent from './TrainingContent.js';
+import Training from './Training.js';
 
-class TrainingContentTag extends Model {}
+class TrainingTag extends Model {}
 
-TrainingContentTag.init({
+TrainingTag.init({
     id: {
         type: DataTypes.UUID,           // Define o tipo UUID para o ID
         defaultValue: DataTypes.UUIDV4, // Gera um UUID v4 por padrão
@@ -18,25 +18,25 @@ TrainingContentTag.init({
             key: 'id'
         }
     },
-    trainingContentId:{
+    trainingId:{
         type: DataTypes.UUID,
         allowNull: false,
         references:{
-            model: 'tb_trainingcontent',
+            model: 'tb_training',
             key: 'id'
         }
     }
 }, {
     sequelize: sequelizeInstance,      // Passa a instância do Sequelize
-    modelName: 'TrainingContentTag',      // Nome do modelo
-    tableName: 'tb_trainingcontenttag', // Nome da tabela no banco de dados
+    modelName: 'TrainingTag',      // Nome do modelo
+    tableName: 'tb_trainingtag', // Nome da tabela no banco de dados
     timestamps: true, // Adiciona `createdAt` e `updatedAt`
     paranoid: true // Adiciona `deletedAt` para suporte a soft deletes
 });
 
-TrainingContentTag.belongsTo(TrainingContent, {
-    foreignKey: 'trainingContentId',
+TrainingTag.belongsTo(Training, {
+    foreignKey: 'trainingId',
     onDelete: 'CASCADE'
 });
 
-export default TrainingContentTag;
+export default TrainingTag;
