@@ -13,7 +13,7 @@ export default class VideoController {
 
     }
 
-    static async getByTrainingContent(req, res) {
+    static async getByLesson(req, res) {
         const { id } = req.params;
         try {
             const videos = await VideoService.getByContent(id);
