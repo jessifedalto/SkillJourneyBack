@@ -18,15 +18,14 @@ Content.init({
             key: 'id'
         }
     },
-    text: {
-        type: DataTypes.STRING(2000),
+    contentText: {
+        type: DataTypes.STRING(1000),
         allowNull: false
     },
-    type: {
+    contentType: {
         type: DataTypes.ENUM(['TITLE', 'NORMAL', 'LIST']),
         allowNull: false
     }
-    
 }, {
     sequelize: sequelizeInstance,      // Passa a instância do Sequelize
     modelName: 'Content',      // Nome do modelo
