@@ -98,7 +98,7 @@ export default class EmployeeTrainingController {
 
         try {
             const isEnrolled = await EmployeeTrainingService.verifySubscribe(trainingId, req.employeeId);
-            return res.status(200).send({ data: isEnrolled, message: "Funcionário encontrado com sucesso."});
+            return res.status(200).send({ data: isEnrolled, message: "Verificação concluída"});
         } catch (error) {
             return res.status(500).send({ error: "Erro ao buscar funcionário", message: error.message})
         }
