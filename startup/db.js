@@ -14,7 +14,13 @@ function initializeDatabase() {
         .then(() => console.log(`Connected to ${process.env.DB_DATABASE}`))
         .catch(err => console.error('Unable to connect to the database:', err));
 
-    sequelize.sync();
+    sequelize.sync({ alter: true })  // Força a recriação das tabelas
+    .then(() => {
+        console.log('Tabelas sincronizadas!');
+    })
+    .catch((err) => {
+        console.error('Erro ao sincronizar as tabelas:', err);
+    });
     
     return sequelize;
 }

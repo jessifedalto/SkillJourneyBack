@@ -16,7 +16,7 @@ export default class ContentController {
     }
 
     static async getById(req, res) {
-
+        
     }
 
 }

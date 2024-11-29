@@ -14,7 +14,7 @@ Content.init({
         type: DataTypes.UUID,
         allowNull: false,
         references:{
-            model: 'tb_trainingcontent',
+            model: 'tb_lesson',
             key: 'id'
         }
     },
@@ -39,6 +39,5 @@ Content.belongsTo(Lesson, {
     foreignKey: 'lessonId',
     onDelete: 'CASCADE'
 });
-
 
 export default Content;
