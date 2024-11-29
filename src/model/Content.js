@@ -19,7 +19,7 @@ Content.init({
         }
     },
     text: {
-        type: DataTypes.STRING(200),
+        type: DataTypes.STRING(2000),
         allowNull: false
     },
     type: {
