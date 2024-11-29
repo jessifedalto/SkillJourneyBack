@@ -93,7 +93,7 @@ export default class EmployeeTrainingController {
 
     static async verifySubscribe(req, res) {
         const { trainingId } = req.params;
-        const { employeeId } = res.employeeId;
+        const { employeeId } = req.employeeId;
 
         if (!trainingId) return res.status(400).send({ message: 'O id é obrigatório' })
 
