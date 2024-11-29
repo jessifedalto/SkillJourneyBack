@@ -10,5 +10,6 @@ route
     .get('/training/:id', EmployeeTrainingController.getByTraining)
     .post('/create', EmployeeTrainingController.create)
     .get('/:id', EmployeeTrainingController.getById)
+    .get('/verify-subscribe/:trainingId', EmployeeTrainingController.verifySubscribe)
     
 export default route;
