@@ -39,7 +39,7 @@ export default class TrainingTagController {
         try {
             const training = await TrainingTagService.getByTraining(id);
             
-            return res.status(200).send({ data: training, message: "Training s encontradas com sucesso." });
+            return res.status(200).send({ data: training, message: "Trainings encontradas com sucesso." });
         } catch (error) {
             return res.status(500).send({ error: "Erro ao buscar training s.", message: error.message });
         }
@@ -50,9 +50,9 @@ export default class TrainingTagController {
 
         try {
             const training = await TrainingTagService.getByTag(id);
-            return res.status(200).send({ data: training, message: "Training s encontradas com sucesso." });
+            return res.status(200).send({ data: training, message: "Trainings encontradas com sucesso." });
         } catch (error) {
-            return res.status(500).send({ error: "Erro ao buscar training s.", message: error.message });
+            return res.status(500).send({ error: "Erro ao buscar trainings.", message: error.message });
         }
     }
 }

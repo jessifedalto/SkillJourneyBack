@@ -41,6 +41,6 @@ export default class LessonService {
     
         if(!lesson || lesson.length === 0) throw Error('Nenhuma lesson cadastrada');
 
-        return Lesson;
+        return lesson;
     }
 }

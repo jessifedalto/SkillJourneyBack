@@ -52,7 +52,7 @@ export default class TrainingTagService {
             };
         });
     
-        const trainingss = await Promise.all(trainingPromises);
-        return trainingss;
+        const trainings = await Promise.all(trainingPromises);
+        return trainings;
     }
 }
